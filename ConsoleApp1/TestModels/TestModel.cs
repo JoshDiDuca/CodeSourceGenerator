@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ConsoleApp1.TestModels
 {
-    class TestModel1
+    class TestModel
     {
+        public string testProperty { get; set; }
     }
 }

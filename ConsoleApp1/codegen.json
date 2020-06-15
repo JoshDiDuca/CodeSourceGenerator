@@ -4,8 +4,8 @@
     },
     "Builders":[
         {
-		    "InputPath":"TestModels/*.cs",
-            "OutputName":"{{ file_name }}",
+		    "ObjectNames":"Model",
+            "OutputName":"{{ name }}.cs",
             "Template":"CodeGen/serviceTemplate.codegen"
         }
     ]

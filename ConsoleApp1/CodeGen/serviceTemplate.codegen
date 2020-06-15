@@ -1,1 +1,7 @@
-﻿this is a test: {{ template }}
+﻿//{{ template }}
+
+public class {{ name }} {
+	{{for member in members}} 
+ 	private object {{ member.name }};
+	{{end}}
+}
