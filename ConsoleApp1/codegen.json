@@ -1,0 +1,11 @@
+﻿{
+    "Settings":{
+        
+    },
+    "Builders":[
+        {
+		    "FilesPath":"TestModels/TestModel.cs",
+            "Template":"CodeGen/serviceTemplate.codegen"
+        }
+    ]
+}
