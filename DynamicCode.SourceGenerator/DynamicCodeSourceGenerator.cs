@@ -1,6 +1,7 @@
 ﻿using DynamicCode.SourceGenerator.Models.Config;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using Scriban;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -25,24 +26,23 @@ namespace DynamicCode.SourceGenerator
 
         private void WriteGeneratedCode(SourceGeneratorContext context)
         {
-            WriteGeneratedCode(context, "Test.cs");
-        }
+            foreach (var builder in _config.Builders)
+            {
+                foreach (var file in Directory.GetFiles(Path.GetDirectoryName(builder.InputPath), Path.GetFileName(builder.InputPath)))
+                {
+                    var template = Template.Parse(File.ReadAllText(builder.Template));
+                    var fileNameTemplate = Template.Parse(builder.OutputName);
+                    var renderModel = new { Template = builder.Template, FilePath = file, FileName = Path.GetFileName(file), FileDirectory = Path.GetDirectoryName(file) };
 
-        private void WriteGeneratedCode(SourceGeneratorContext context, string fileName)
-        {
-            var sourceBuilder = new StringBuilder($@"");
+                    var result = template.Render(renderModel);
+                    var fileName = fileNameTemplate.Render(renderModel);
 
-            foreach (var item in _config.Builders)
-            { 
-                sourceBuilder.AppendLine(item.Template);
+                    var source = SourceText.From(result, Encoding.UTF8);
 
+                    context.AddSource(fileName, source);
+                    File.WriteAllText(fileName, source.ToString());
+                }
             }
-
-
-            var source = SourceText.From(sourceBuilder.ToString(), Encoding.UTF8);
-            context.AddSource(fileName, source);
-
-            File.WriteAllText(fileName, source.ToString());
         }
     }
 }

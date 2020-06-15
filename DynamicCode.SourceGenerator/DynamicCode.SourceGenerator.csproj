@@ -14,4 +14,14 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Scriban">
+      <HintPath>References\Scriban.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <IsTool>true</IsTool>
+  </PropertyGroup>
+
 </Project>
