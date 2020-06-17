@@ -1,7 +1,7 @@
 ﻿//{{ template }}
 
 public class {{ name }}_Generated {
-	{{for property in o.properties}} 
+	{{for property in properties}} 
  	private object {{ property.name }};
 	{{end}}
 }

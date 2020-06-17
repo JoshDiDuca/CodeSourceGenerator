@@ -13,6 +13,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
+using DynamicCode.SourceGenerator.Metadata.Roslyn;
+using DynamicCode.SourceGenerator.Models.Rendering;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -55,7 +57,8 @@ namespace DynamicCode.SourceGenerator
                 {
                     var template = Template.Parse(File.ReadAllText(builder.Template));
                     var fileNameTemplate = Template.Parse(builder.OutputName);
-                    var renderModel = new { Template = builder.Template, Name = @object.Name, O = @object };
+
+                    var renderModel = RenderModel.FromNamedItem(builder, @object);
 
                     var result = template.Render(renderModel);
                     var fileName = fileNameTemplate.Render(renderModel);
