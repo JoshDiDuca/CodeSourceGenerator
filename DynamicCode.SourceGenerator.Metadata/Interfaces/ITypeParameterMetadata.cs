@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DynamicCode.SourceGenerator.Metadata.Interfaces
+﻿namespace DynamicCode.SourceGenerator.Metadata.Interfaces
 {
     public interface ITypeParameterMetadata
     {

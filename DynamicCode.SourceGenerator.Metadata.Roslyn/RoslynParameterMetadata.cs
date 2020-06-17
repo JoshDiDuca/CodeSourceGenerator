@@ -29,12 +29,11 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
             if (symbol.ExplicitDefaultValue == null)
                 return "null";
 
-            var stringValue = symbol.ExplicitDefaultValue as string;
-            if (stringValue != null)
+            if (symbol.ExplicitDefaultValue is string stringValue)
                 return $"\"{stringValue.Replace("\\", "\\\\").Replace("\"", "\\\"")}\"";
 
-            if(symbol.ExplicitDefaultValue is bool)
-                return (bool)symbol.ExplicitDefaultValue ? "true" : "false";
+            if (symbol.ExplicitDefaultValue is bool boolean)
+                return boolean ? "true" : "false";
 
             return symbol.ExplicitDefaultValue.ToString();
         }

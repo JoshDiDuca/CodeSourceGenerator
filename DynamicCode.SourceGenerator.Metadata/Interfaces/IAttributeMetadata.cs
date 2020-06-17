@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DynamicCode.SourceGenerator.Metadata.Interfaces
+﻿namespace DynamicCode.SourceGenerator.Metadata.Interfaces
 {
     public interface IAttributeMetadata : INamedItem
     {

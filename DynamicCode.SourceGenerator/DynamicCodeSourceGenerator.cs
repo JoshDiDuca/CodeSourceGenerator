@@ -1,5 +1,4 @@
-﻿using DynamicCode.SourceGenerator.Models;
-using DynamicCode.SourceGenerator.Models.Config;
+﻿using DynamicCode.SourceGenerator.Models.Config;
 using DynamicCode.SourceGenerator.Models.Generations;
 using DynamicCode.SourceGenerator.Visitors;
 using Microsoft.CodeAnalysis;
@@ -10,10 +9,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
-using DynamicCode.SourceGenerator.Metadata.Roslyn;
 using DynamicCode.SourceGenerator.Models.Rendering;
 
 namespace DynamicCode.SourceGenerator
@@ -26,7 +23,7 @@ namespace DynamicCode.SourceGenerator
         private int currentGeneration = 0;
 
         private Dictionary<string, List<GenerationModel<string>>> _generations;
-        public List<KeyValuePair<string, string>> currentGenerations => _generations?.Where(p => p.Value.Any(g => g.Generation == currentGeneration))?.Select(g => new KeyValuePair<string, string>(g.Key, g.Value.FirstOrDefault(g => g.Generation == currentGeneration).Model))?.ToList();
+        public List<KeyValuePair<string, string>> CurrentGenerations => _generations?.Where(p => p.Value.Any(g => g.Generation == currentGeneration))?.Select(g => new KeyValuePair<string, string>(g.Key, g.Value.FirstOrDefault(g => g.Generation == currentGeneration).Model))?.ToList();
 
         public void Initialize(InitializationContext context)
         {
@@ -86,7 +83,7 @@ namespace DynamicCode.SourceGenerator
 
                 }
 
-                foreach (var pair in currentGenerations)
+                foreach (var pair in CurrentGenerations)
                 {
                     var source = SourceText.From(pair.Value, Encoding.UTF8);
 

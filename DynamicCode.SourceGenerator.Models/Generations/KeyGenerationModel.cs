@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DynamicCode.SourceGenerator.Models.Generations
+﻿namespace DynamicCode.SourceGenerator.Models.Generations
 {
     public class GenerationModel<T>
     {
