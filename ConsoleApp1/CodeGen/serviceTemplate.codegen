@@ -1,7 +1,7 @@
 ﻿//{{ template }}
 
-public class {{ name }} {
-	{{for member in members}} 
- 	private object {{ member.name }};
+public class {{ name }}_Generated {
+	{{for property in o.properties}} 
+ 	private object {{ property.name }};
 	{{end}}
 }

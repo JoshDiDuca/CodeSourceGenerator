@@ -1,12 +1,12 @@
 ﻿{
-    "Settings":{
-        
-    },
-    "Builders":[
-        {
-		    "ObjectNames":"Model",
-            "OutputName":"{{ name }}.cs",
-            "Template":"CodeGen/serviceTemplate.codegen"
-        }
-    ]
+  "Settings": {
+
+  },
+  "Builders": [
+    {
+      "ObjectNames": "Model",
+      "OutputName": "{{ name }}.cs",
+      "Template": "CodeGen/serviceTemplate.codegen"
+    }
+  ]
 }

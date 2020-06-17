@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DynamicCode.SourceGenerator.Common;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,8 @@ namespace DynamicCode.SourceGenerator
     {
         public static T GetConfig<T>()
         {
-            try
-            {
-                var file = File.ReadAllText("codegen.json");
-                using (var stream = GenerateStreamFromString(file))
-                {
-                    if (new DataContractJsonSerializer(typeof(T)).ReadObject(stream) is T parsed)
-                        return parsed;
-                    else return default;
-                }
-            }
-            catch (Exception ex) {
-                Console.WriteLine("Error finding file:");
-                Console.WriteLine(ex);
-            }
-            return default;
+            var file = File.ReadAllText("codegen.json");
+            return JSON.Parse<T>(file);
         }
         public static Stream GenerateStreamFromString(string s)
         {

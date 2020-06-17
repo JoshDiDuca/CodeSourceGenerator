@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
@@ -16,19 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj" />
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Scriban">
-      <HintPath>References\Scriban.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <PropertyGroup>
-    <IsTool>true</IsTool>
-  </PropertyGroup>
 
 </Project>
