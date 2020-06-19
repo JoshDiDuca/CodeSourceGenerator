@@ -55,21 +55,6 @@ namespace DynamicCode.SourceGenerator.Models
         public abstract Type Type { get; }
 
         /// <summary>
-        /// Determines if the method acessability is public
-        /// </summary>
-        public abstract bool IsPublic { get; }
-
-        /// <summary>
-        /// Determines if the method acessability is private
-        /// </summary>
-        public abstract bool IsPrivate { get; }
-
-        /// <summary>
-        /// Determines if the method acessability is protected
-        /// </summary>
-        public abstract bool IsProtected { get; }
-
-        /// <summary>
         /// All generic type parameters of the method.
         /// TypeParameters are the type placeholders of a generic method e.g. &lt;T&gt;.
         /// </summary>

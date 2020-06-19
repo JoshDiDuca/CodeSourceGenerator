@@ -33,21 +33,6 @@ namespace DynamicCode.SourceGenerator.Models
         public abstract Object Parent { get; }
 
         /// <summary>
-        /// Determines if the event acessability is public
-        /// </summary>
-        public abstract bool IsPublic { get; }
-
-        /// <summary>
-        /// Determines if the event acessability is private
-        /// </summary>
-        public abstract bool IsPrivate { get; }
-
-        /// <summary>
-        /// Determines if the event acessability is protected
-        /// </summary>
-        public abstract bool IsProtected { get; }
-
-        /// <summary>
         /// The type of the event.
         /// </summary>
         public abstract Type Type { get; }

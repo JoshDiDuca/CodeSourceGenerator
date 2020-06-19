@@ -21,9 +21,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(_symbol);
 
-        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
-        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
-        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+        public bool IsPublic => _symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => _symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => _symbol.DeclaredAccessibility == Accessibility.Protected;
 
         public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(_symbol.GetAttributes());
         public IClassMetadata ContainingClass => RoslynClassMetadata.FromNamedTypeSymbol(_symbol.ContainingType);

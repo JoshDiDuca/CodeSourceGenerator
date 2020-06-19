@@ -63,21 +63,6 @@ namespace DynamicCode.SourceGenerator.Models
         public abstract Object Parent { get; }
 
         /// <summary>
-        /// Determines if the interface acessability is public
-        /// </summary>
-        public abstract bool IsPublic { get; }
-
-        /// <summary>
-        /// Determines if the interface acessability is private
-        /// </summary>
-        public abstract bool IsPrivate { get; }
-
-        /// <summary>
-        /// Determines if the interface acessability is protected
-        /// </summary>
-        public abstract bool IsProtected { get; }
-
-        /// <summary>
         /// All properties defined in the interface.
         /// </summary>
         public abstract IEnumerable<Property> Properties { get; }
