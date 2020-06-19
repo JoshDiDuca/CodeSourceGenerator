@@ -23,8 +23,8 @@ Dynamic code source generator is a library which allows you to generate source f
 - - Properties ✔
 - - Fields ✔
 - - Methods ✔
-- - Attributes ✔
-- - Type
+- - Attributes  ✔
+- - Type ✔
 
 
 ## Contributing
