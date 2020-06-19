@@ -21,13 +21,17 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(_symbol);
 
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+
         public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(_symbol.GetAttributes());
         public IClassMetadata ContainingClass => RoslynClassMetadata.FromNamedTypeSymbol(_symbol.ContainingType);
         public IEnumerable<IEnumValueMetadata> Values => RoslynEnumValueMetadata.FromFieldSymbols(_symbol.GetMembers().OfType<IFieldSymbol>());
         
         internal static IEnumerable<IEnumMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols)
         {
-            return symbols.Where(s => s.DeclaredAccessibility == Accessibility.Public).Select(s => new RoslynEnumMetadata(s));
+            return symbols.Select(s => new RoslynEnumMetadata(s));
         }
     }
 }

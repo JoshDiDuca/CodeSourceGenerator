@@ -17,12 +17,15 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public string DocComment => symbol.GetDocumentationCommentXml();
         public string Name => symbol.Name;
         public string FullName => symbol.ToDisplayString();
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
         public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(symbol.GetAttributes());
         public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(symbol.Type);
 
         public static IEnumerable<IFieldMetadata> FromFieldSymbols(IEnumerable<IFieldSymbol> symbols)
         {
-            return symbols.Where(s => s.DeclaredAccessibility == Accessibility.Public && s.IsConst == false && s.IsStatic == false).Select(s => new RoslynFieldMetadata(s));
+            return symbols.Select(s => new RoslynFieldMetadata(s));
         }
     }
 }

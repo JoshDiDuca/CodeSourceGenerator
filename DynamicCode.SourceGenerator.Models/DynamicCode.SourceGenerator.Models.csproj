@@ -14,8 +14,4 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="RenderModels\" />
-  </ItemGroup>
 </Project>

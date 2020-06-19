@@ -40,6 +40,21 @@ namespace DynamicCode.SourceGenerator.Models
         public abstract bool IsAbstract { get; }
 
         /// <summary>
+        /// Determines if the property acessability is public
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the property acessability is private
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the property acessability is protected
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// The name of the property.
         /// </summary>
         public abstract string Name { get; }

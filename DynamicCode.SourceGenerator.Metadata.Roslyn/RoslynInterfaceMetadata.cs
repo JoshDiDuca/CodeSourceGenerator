@@ -7,12 +7,12 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 {
     public class RoslynInterfaceMetadata : IInterfaceMetadata
     {
-        private readonly INamedTypeSymbol _symbol;
+        private readonly INamedTypeSymbol symbol;
         private readonly RoslynFileMetadata _file;
 
         public RoslynInterfaceMetadata(INamedTypeSymbol symbol, RoslynFileMetadata file = null)
         {
-            _symbol = symbol;
+            this.symbol = symbol;
             _file = file;
         }
 
@@ -23,32 +23,35 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
             {
                 if (_members == null)
                 {
-                    _members = _symbol.GetMembers();
+                    _members = symbol.GetMembers();
                 }
                 return _members;
             }
         }
 
-        public string DocComment => _symbol.GetDocumentationCommentXml();
-        public string Name => _symbol.Name;
-        public string FullName => _symbol.ToDisplayString();
-        public bool IsGeneric => _symbol.TypeParameters.Any();
-        public string Namespace => _symbol.GetNamespace();
+        public string DocComment => symbol.GetDocumentationCommentXml();
+        public string Name => symbol.Name;
+        public string FullName => symbol.ToDisplayString();
+        public bool IsGeneric => symbol.TypeParameters.Any();
+        public string Namespace => symbol.GetNamespace();
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
 
-        public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(_symbol);
+        public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(symbol);
 
-        public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(_symbol.GetAttributes());
-        public IClassMetadata ContainingClass => RoslynClassMetadata.FromNamedTypeSymbol(_symbol.ContainingType);
+        public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(symbol.GetAttributes());
+        public IClassMetadata ContainingClass => RoslynClassMetadata.FromNamedTypeSymbol(symbol.ContainingType);
         public IEnumerable<IEventMetadata> Events => RoslynEventMetadata.FromEventSymbols(Members.OfType<IEventSymbol>());
-        public IEnumerable<IInterfaceMetadata> Interfaces => RoslynInterfaceMetadata.FromNamedTypeSymbols(_symbol.Interfaces);
+        public IEnumerable<IInterfaceMetadata> Interfaces => RoslynInterfaceMetadata.FromNamedTypeSymbols(symbol.Interfaces);
         public IEnumerable<IMethodMetadata> Methods => RoslynMethodMetadata.FromMethodSymbols(Members.OfType<IMethodSymbol>());
         public IEnumerable<IPropertyMetadata> Properties => RoslynPropertyMetadata.FromPropertySymbol(Members.OfType<IPropertySymbol>());
-        public IEnumerable<ITypeParameterMetadata> TypeParameters => RoslynTypeParameterMetadata.FromTypeParameterSymbols(_symbol.TypeParameters);
-        public IEnumerable<ITypeMetadata> TypeArguments => RoslynTypeMetadata.FromTypeSymbols(_symbol.TypeArguments);
+        public IEnumerable<ITypeParameterMetadata> TypeParameters => RoslynTypeParameterMetadata.FromTypeParameterSymbols(symbol.TypeParameters);
+        public IEnumerable<ITypeMetadata> TypeArguments => RoslynTypeMetadata.FromTypeSymbols(symbol.TypeArguments);
 
         public static IEnumerable<IInterfaceMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols, RoslynFileMetadata file = null)
         {
-            return symbols.Where(s => s.DeclaredAccessibility == Accessibility.Public).Select(s => new RoslynInterfaceMetadata(s, file));
+            return symbols.Select(s => new RoslynInterfaceMetadata(s, file));
         }
     }
 }

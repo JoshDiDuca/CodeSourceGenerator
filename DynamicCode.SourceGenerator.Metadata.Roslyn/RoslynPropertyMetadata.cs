@@ -20,12 +20,15 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(symbol.GetAttributes());
         public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(symbol.Type);
         public bool IsAbstract => symbol.IsAbstract;
-        public bool HasGetter => symbol.GetMethod != null && symbol.GetMethod.DeclaredAccessibility == Accessibility.Public;
-        public bool HasSetter => symbol.SetMethod != null && symbol.SetMethod.DeclaredAccessibility == Accessibility.Public;
-        
+        public bool HasGetter => symbol.GetMethod != null;
+        public bool HasSetter => symbol.SetMethod != null;
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+
         public static IEnumerable<IPropertyMetadata> FromPropertySymbol(IEnumerable<IPropertySymbol> symbols)
         {
-            return symbols.Where(p => p.DeclaredAccessibility == Accessibility.Public && p.IsStatic == false).Select(p => new RoslynPropertyMetadata(p));
+            return symbols.Select(p => new RoslynPropertyMetadata(p));
         }
     }
 }

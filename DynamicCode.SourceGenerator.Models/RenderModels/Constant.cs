@@ -44,6 +44,21 @@ namespace DynamicCode.SourceGenerator.Models
         public abstract string Value { get; }
 
         /// <summary>
+        /// Determines if the constant acessability is public
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the constant acessability is private
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the constant acessability is protected
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// Converts the current instance to string.
         /// </summary>
         public static implicit operator string (Constant instance)

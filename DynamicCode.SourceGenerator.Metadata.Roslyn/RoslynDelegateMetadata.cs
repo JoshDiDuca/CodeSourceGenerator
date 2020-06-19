@@ -21,6 +21,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public string FullName => symbol.GetFullName();
         public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(symbol.GetAttributes());
         public ITypeMetadata Type => methodSymbol == null ? null : RoslynTypeMetadata.FromTypeSymbol(methodSymbol.ReturnType);
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
         public bool IsAbstract => false;
         public bool IsGeneric => symbol.TypeParameters.Any();
         public IEnumerable<ITypeParameterMetadata> TypeParameters => RoslynTypeParameterMetadata.FromTypeParameterSymbols(symbol.TypeParameters);
@@ -28,7 +31,7 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public static IEnumerable<IDelegateMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols)
         {
-            return symbols.Where(s => s.DeclaredAccessibility == Accessibility.Public).Select(s => new RoslynDelegateMetadata(s));
+            return symbols.Select(s => new RoslynDelegateMetadata(s));
         }
     }
 }

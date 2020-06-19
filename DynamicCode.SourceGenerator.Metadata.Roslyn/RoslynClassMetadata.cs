@@ -33,6 +33,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public bool IsAbstract => _symbol.IsAbstract;
         public bool IsGeneric => _symbol.TypeParameters.Any();
         public string Namespace => _symbol.GetNamespace();
+        public bool IsPublic => _symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => _symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => _symbol.DeclaredAccessibility == Accessibility.Protected;
 
         public ITypeMetadata Type => RoslynTypeMetadata.FromTypeSymbol(_symbol);
 
@@ -55,14 +58,13 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         internal static IClassMetadata FromNamedTypeSymbol(INamedTypeSymbol symbol)
         {
             if (symbol == null) return null;
-            if (symbol.DeclaredAccessibility != Accessibility.Public || symbol.ToDisplayString() == "object") return null;
 
             return new RoslynClassMetadata(symbol);
         }
 
         internal static IEnumerable<IClassMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols, RoslynFileMetadata file = null)
         {
-            return symbols.Where(s => s.DeclaredAccessibility == Accessibility.Public && s.ToDisplayString() != "object").Select(s => new RoslynClassMetadata(s));
+            return symbols.Select(s => new RoslynClassMetadata(s));
         }
     }
 }

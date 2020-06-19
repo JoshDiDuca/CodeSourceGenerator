@@ -3,14 +3,14 @@ namespace ConsoleApp1.TestModels
 {
     class TestModel
     {
-        public string TestModel2 { get; set; }
-
-        private void test() { }
+        private string TestProperty { get; set; }
+        public string TestField;
+        public void TestMethod() { 
+        
+        }
     }
-    class TestModel3
+    class TestModel2
     {
-        public string testProperty { get; set; }
 
-        private void test() { }
     }
 }
