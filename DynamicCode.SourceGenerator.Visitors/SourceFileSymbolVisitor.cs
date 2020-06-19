@@ -9,7 +9,7 @@ using DynamicCode.SourceGenerator.Metadata.Roslyn;
 
 namespace DynamicCode.SourceGenerator.Visitors
 {
-    class SourceFileSymbolVisitor : SymbolVisitor
+    public class SourceFileSymbolVisitor : SymbolVisitor
     {
         public ConcurrentBag<INamedItem> Objects { get; set; } = new ConcurrentBag<INamedItem>();
 

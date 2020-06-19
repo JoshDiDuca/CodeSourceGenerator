@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Collections;
-using DynamicCode.SourceGenerator.Models.CodeGeneration;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
 {

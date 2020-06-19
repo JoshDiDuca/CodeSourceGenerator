@@ -1,7 +1,4 @@
-﻿
-using System.Collections.Generic;
-
-namespace DynamicCode.SourceGenerator.Models
+﻿namespace DynamicCode.SourceGenerator.Models
 {
     /// <summary>
     /// Represents a generic type parameter.

@@ -30,12 +30,13 @@ namespace DynamicCode.SourceGenerator
             Debugger.Launch();
             currentGeneration = 0;
             _generations = new Dictionary<string, List<GenerationModel<string>>>();
-            _config = ConfigParser.GetConfig<CodeGenerationConfig>();
             _visitor = new SourceFileSymbolVisitor();
         }
 
         public void Execute(SourceGeneratorContext context)
         {
+            _config = ConfigParser.GetConfig(_visitor, context);
+
             currentGeneration++;
             _visitor.Visit(context.Compilation.GlobalNamespace);
             WriteGeneratedCode(context);

@@ -22,7 +22,7 @@ namespace DynamicCode.SourceGenerator.Common
             return default;
         }
 
-        public static Stream GenerateStreamFromString(string s)
+        private static Stream GenerateStreamFromString(string s)
         {
             var stream = new MemoryStream();
             var writer = new StreamWriter(stream);
