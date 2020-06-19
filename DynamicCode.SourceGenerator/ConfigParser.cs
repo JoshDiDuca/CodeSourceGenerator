@@ -10,6 +10,7 @@ namespace DynamicCode.SourceGenerator
             var file = File.ReadAllText("codegen.json");
             return JSON.Parse<T>(file);
         }
+
         public static Stream GenerateStreamFromString(string s)
         {
             var stream = new MemoryStream();

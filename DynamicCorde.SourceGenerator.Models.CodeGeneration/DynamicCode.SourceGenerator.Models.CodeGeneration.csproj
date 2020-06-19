@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RenderModels\" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
   </ItemGroup>
+
 </Project>

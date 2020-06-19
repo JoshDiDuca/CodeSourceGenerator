@@ -19,6 +19,7 @@
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
+    <ProjectReference Include="..\DynamicCorde.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿namespace ConsoleApp1.TestModels
+﻿
+namespace ConsoleApp1.TestModels
 {
     class TestModel
     {

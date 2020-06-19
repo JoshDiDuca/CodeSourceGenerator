@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{83
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Metadata.Roslyn", "DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj", "{4E8F8178-43FB-420E-A681-344876C6465C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCode.SourceGenerator.Metadata", "DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj", "{B2DBCFFB-91A3-4D2D-8840-EF8D2BE955C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Metadata", "DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj", "{B2DBCFFB-91A3-4D2D-8840-EF8D2BE955C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCode.SourceGenerator.Models", "DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj", "{70B10B19-A63C-41F4-9E26-C5F312A2A846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Models", "DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj", "{70B10B19-A63C-41F4-9E26-C5F312A2A846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCode.SourceGenerator.Models.CodeGeneration", "DynamicCorde.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj", "{F19AA28B-E14B-4BF0-94BC-D68707579C6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{70B10B19-A63C-41F4-9E26-C5F312A2A846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B10B19-A63C-41F4-9E26-C5F312A2A846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B10B19-A63C-41F4-9E26-C5F312A2A846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19AA28B-E14B-4BF0-94BC-D68707579C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19AA28B-E14B-4BF0-94BC-D68707579C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19AA28B-E14B-4BF0-94BC-D68707579C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19AA28B-E14B-4BF0-94BC-D68707579C6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

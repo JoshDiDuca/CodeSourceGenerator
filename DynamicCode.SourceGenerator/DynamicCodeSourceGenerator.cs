@@ -6,12 +6,12 @@ using Microsoft.CodeAnalysis.Text;
 using Scriban;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Models.Rendering;
+using System.Diagnostics;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -76,7 +76,7 @@ namespace DynamicCode.SourceGenerator
                         } 
                         else
                         {
-                            result = currentGen.Model + Environment.NewLine + result;
+                            result = currentGen.Model + Environment.NewLine + Environment.NewLine + result;
                             currentGen.Model = result;
                         }
                     }

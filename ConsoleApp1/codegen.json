@@ -6,7 +6,7 @@
     {
       "ObjectNames": "Model",
       "OutputName": "{{ name }}.cs",
-      "Template": "CodeGen/serviceTemplate.codegen"
+      "Template": "CodeGen/serviceTemplate.scriban"
     }
   ]
 }
