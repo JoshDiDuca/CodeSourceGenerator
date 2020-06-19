@@ -12,6 +12,8 @@ using System.Text;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Models.Rendering;
 using System.Diagnostics;
+using Scriban.Runtime;
+using DynamicCode.SourceGenerator.Functions;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -36,7 +38,7 @@ namespace DynamicCode.SourceGenerator
         public void Execute(SourceGeneratorContext context)
         {
             _config = ConfigParser.GetConfig(_visitor, context);
-
+            
             currentGeneration++;
             _visitor.Visit(context.Compilation.GlobalNamespace);
             WriteGeneratedCode(context);
@@ -53,10 +55,16 @@ namespace DynamicCode.SourceGenerator
 
                 foreach (INamedItem @object in queryObjects)
                 {
-                    var template = Template.Parse(File.ReadAllText(builder.Template));
-                    var fileNameTemplate = Template.Parse(builder.OutputName);
+                    var scriptObject = new ScriptObject();
+                    scriptObject.Import(typeof(StringFunctions));
 
                     var renderModel = RenderModel.FromNamedItem(builder, @object);
+
+                    var templateContext = new TemplateContext(ScriptObject.From(renderModel));
+                    templateContext.PushGlobal(scriptObject);
+
+                    var template = Template.Parse(File.ReadAllText(builder.Template));
+                    var fileNameTemplate = Template.Parse(builder.OutputName);
 
                     var result = template.Render(renderModel);
                     var fileName = fileNameTemplate.Render(renderModel);
