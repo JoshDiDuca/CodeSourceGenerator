@@ -17,14 +17,14 @@ Dynamic code source generator is a library which allows you to generate source f
 - - Output Name Template ✔
 - File Generation
 - - Basic File ✔
-- - Multiple templates in file (In progress)
+- - Multiple templates in file ✔
 - Object Template Integration
 - - Name ✔
+- - Properties ✔
+- - Fields ✔
+- - Methods ✔
+- - Attributes ✔
 - - Type
-- - ObjectType
-- - Properties
-- - Methods
-- - Attributes
 
 
 ## Contributing
