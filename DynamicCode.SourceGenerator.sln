@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Models", "DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj", "{70B10B19-A63C-41F4-9E26-C5F312A2A846}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Models.CodeGeneration", "DynamicCorde.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj", "{F19AA28B-E14B-4BF0-94BC-D68707579C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Models.CodeGeneration", "DynamicCode.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj", "{F19AA28B-E14B-4BF0-94BC-D68707579C6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Config", "DynamicCode.SourceGenerator.Config\DynamicCode.SourceGenerator.Config.csproj", "{D66B1E55-5A85-47D6-91FE-F1D04FC9C857}"
 EndProject
