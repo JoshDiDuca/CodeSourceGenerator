@@ -4,8 +4,13 @@
   },
   "Builders": [
     {
+      "InputMatchers": [ "Class", "Enum" ],
+      "OutputName": "Output/Documentation/Objects.txt",
+      "Template": "CodeGen/documentationModel.scriban"
+    },
+    {
       "InputMatchers": [ "Model" ],
-      "OutputName": "Output/{{ name }}.ts",
+      "OutputName": "Output/Typescript/{{ name }}.ts",
       "Template": "CodeGen/typescriptModel.scriban"
     }
   ]

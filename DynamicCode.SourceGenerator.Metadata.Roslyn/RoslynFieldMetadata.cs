@@ -25,7 +25,7 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public static IEnumerable<IFieldMetadata> FromFieldSymbols(IEnumerable<IFieldSymbol> symbols)
         {
-            return symbols.Select(s => new RoslynFieldMetadata(s));
+            return symbols.Where(s => s.CanBeReferencedByName).Select(s => new RoslynFieldMetadata(s));
         }
     }
 }

@@ -31,7 +31,7 @@ namespace DynamicCode.SourceGenerator
 
         public void Initialize(InitializationContext context)
         {
-            Debugger.Launch();
+            //Debugger.Launch();
             currentGeneration = 0;
             _generations = new Dictionary<string, List<GenerationModel<string>>>();
             _visitor = new SourceFileSymbolVisitor();
@@ -40,7 +40,10 @@ namespace DynamicCode.SourceGenerator
         public void Execute(SourceGeneratorContext context)
         {
             _config = ConfigParser.GetConfig(_visitor, context);
-            
+
+            if (_config?.Builders == null)
+                return;
+
             currentGeneration++;
             _visitor.Visit(context.Compilation.GlobalNamespace);
             WriteGeneratedCode(context);
@@ -61,12 +64,13 @@ namespace DynamicCode.SourceGenerator
                     var renderModel = RenderModel.FromNamedItem(builder, @object);
                     scriptObject.Import(renderModel);
 
-                    var templateContext = new TemplateContext(scriptObject);
+                    var templateContext = new TemplateContext();
+                    templateContext.PushGlobal(scriptObject);
 
                     var template = Template.Parse(File.ReadAllText(builder.Template));
                     var fileNameTemplate = Template.Parse(builder.OutputName);
 
-                    var result = template.Render(renderModel);
+                    var result = template.Render(templateContext);
                     var fileName = fileNameTemplate.Render(renderModel);
 
                     var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;

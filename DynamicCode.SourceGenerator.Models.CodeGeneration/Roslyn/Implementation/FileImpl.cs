@@ -1,7 +1,9 @@
 ﻿using DynamicCode.SourceGenerator.Metadata.Interfaces;
+using DynamicCode.SourceGenerator.Models;
+using DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation;
 using System.Collections.Generic;
 
-namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
+namespace DynamicCode.SourceGenerator.CodeGeneration.Implementation
 {
     public sealed class FileImpl : File
     {

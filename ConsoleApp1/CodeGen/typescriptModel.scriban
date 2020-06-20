@@ -3,6 +3,15 @@
 export class {{ name }}_Generated {
 	{{for property in properties}} 
 	{{for attribute in property.attributes}}[{{ attribute.name }}]{{end}}
-	private {{ property.name }} : {{ property.type.typescript_name }};
+	public {{ to_camel_case property.name }} : {{ property.type.typescript_name }};
+	{{end}}
+	{{for field in fields}} 
+	public {{ to_camel_case field.name }} : {{ field.type.typescript_name }};
+	{{end}}
+	{{for method in methods}} 
+	{{for attribute in method.attributes}}[{{ attribute.name }}]{{end}}
+	public {{ to_camel_case method.name }}() : {{ method.type.typescript_name }}{
+	
+	}
 	{{end}}
 }

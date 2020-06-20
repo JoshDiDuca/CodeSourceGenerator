@@ -1,8 +1,7 @@
 ﻿
-using DynamicCode.SourceGenerator.Models;
 using System.Collections.Generic;
 
-namespace DynamicCode.SourceGenerator.Models
+namespace ConsoleApp1.Input.Typescript
 {
     public abstract class Class : Object
     {

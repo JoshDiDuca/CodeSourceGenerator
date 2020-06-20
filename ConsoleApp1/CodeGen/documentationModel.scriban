@@ -1,0 +1,8 @@
+﻿{{for property in properties}} 
+# {{ name }}
+
+## Properties
+{{for property in properties}} 
+- {{ property.name }}
+{{end}}
+{{end}}

@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp1.Input
+namespace ConsoleApp1.Input.Typescript
 {
     class TestModel
     {
@@ -8,9 +8,5 @@ namespace ConsoleApp1.Input
         public void TestMethod() { 
         
         }
-    }
-    class TestModel2
-    {
-
     }
 }

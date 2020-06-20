@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scriban.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -6,15 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace DynamicCode.SourceGenerator.Functions
 {
-    public class StringFunctions
+    public class StringFunctions : ScriptObject
     {
-        public string ToCamelCase(string s)
+        public static string ToCamelCase(string s)
         {
-            var x = s.Replace("_", "");
-            if (x.Length == 0) return string.Empty;
-            x = Regex.Replace(x, "([A-Z])([A-Z]+)($|[A-Z])",
-                m => m.Groups[1].Value + m.Groups[2].Value.ToLower() + m.Groups[3].Value);
-            return char.ToUpper(x[0]) + x.Substring(1);
+            return string.IsNullOrEmpty(s) || s.Length < 2
+            ? s
+            : Char.ToLowerInvariant(s[0]) + s.Substring(1);
         }
 
         public static string PascalCase(string s)
