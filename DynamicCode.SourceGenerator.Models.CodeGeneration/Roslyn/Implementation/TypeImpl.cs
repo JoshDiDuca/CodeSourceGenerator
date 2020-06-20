@@ -1,23 +1,24 @@
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Collections;
+using DynamicCode.SourceGenerator.Models.RenderModels;
+using LazyString = System.Lazy<string>;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
 {
     public sealed class TypeImpl : Type
     {
         private readonly ITypeMetadata _metadata;
-        private readonly Lazy<string> _lazyName;
-        private readonly Lazy<string> _lazyTypescriptName;
+        private readonly LazyString _lazyName;
+        private readonly LazyString _lazyTypescriptName;
 
         private TypeImpl(ITypeMetadata metadata, Object parent)
         {
             _metadata = metadata;
             Parent = parent;
-            _lazyName = new Lazy<string>(() => Helpers.GetOriginalName(metadata));
-            _lazyTypescriptName = new Lazy<string>(() => Helpers.GetTypeScriptName(metadata));
+            _lazyName = new LazyString(() => Helpers.GetOriginalName(metadata));
+            _lazyTypescriptName = new LazyString(() => Helpers.GetTypeScriptName(metadata));
         }
 
         public override Object Parent { get; }

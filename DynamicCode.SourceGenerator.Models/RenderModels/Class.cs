@@ -1,8 +1,8 @@
 ﻿
-using DynamicCode.SourceGenerator.Models;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 using System.Collections.Generic;
 
-namespace DynamicCode.SourceGenerator.Models
+namespace DynamicCode.SourceGenerator.Models.RenderModels
 {
     public abstract class Class : Object
     {

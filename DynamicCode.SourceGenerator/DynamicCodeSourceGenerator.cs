@@ -31,7 +31,7 @@ namespace DynamicCode.SourceGenerator
 
         public void Initialize(InitializationContext context)
         {
-            //Debugger.Launch();
+            Debugger.Launch();
             currentGeneration = 0;
             _generations = new Dictionary<string, List<GenerationModel<string>>>();
             _visitor = new SourceFileSymbolVisitor();

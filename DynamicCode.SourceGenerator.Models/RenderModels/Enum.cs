@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DynamicCode.SourceGenerator.Models
+namespace DynamicCode.SourceGenerator.Models.RenderModels
 {
     /// <summary>
     /// Represents an enum.

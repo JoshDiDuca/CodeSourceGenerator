@@ -1,8 +1,5 @@
-﻿{{for property in properties}} 
-# {{ name }}
+﻿# {{ name }} inherits {{ type.base_class.type.name }}
 
-## Properties
-{{for property in properties}} 
-- {{ property.name }}
-{{end}}
-{{end}}
+Properties
+{{for property in properties}}
+- {{ property.name }}({{ property.type.name }}){{end}}

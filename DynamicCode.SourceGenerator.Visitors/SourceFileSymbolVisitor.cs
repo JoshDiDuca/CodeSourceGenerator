@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Metadata.Roslyn;
+using System;
 
 namespace DynamicCode.SourceGenerator.Visitors
 {
@@ -38,7 +39,8 @@ namespace DynamicCode.SourceGenerator.Visitors
             };
             if (namedItem != null)
             {
-                Objects.Add(namedItem);
+                if(!Objects.Any((o) => o.FullName == namedItem.FullName))
+                    Objects.Add(namedItem);
             }
             foreach (var childSymbol in symbol.GetTypeMembers())
             {
@@ -53,7 +55,7 @@ namespace DynamicCode.SourceGenerator.Visitors
             return Objects.Where(e => 
                     !string.IsNullOrEmpty(e?.Name) && 
                     assemblies.Any(a => e.FullName.Contains(a)) && 
-                    Regex.IsMatch(e.Name, query)
+                    Regex.IsMatch(e.FullName, query) 
                   ).ToList();
         }
     }

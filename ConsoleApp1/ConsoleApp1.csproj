@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Output\Documentation\" />
+    <Folder Include="Output\Debug\" />
   </ItemGroup>
 
 </Project>

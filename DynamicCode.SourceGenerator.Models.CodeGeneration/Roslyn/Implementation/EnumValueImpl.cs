@@ -1,5 +1,6 @@
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Collections;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 using System.Collections.Generic;
 using System.Linq;
 

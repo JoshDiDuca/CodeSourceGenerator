@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DynamicCode.SourceGenerator.Models.RenderModels;
+using System.Collections.Generic;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
 {

@@ -2,6 +2,7 @@
 using DynamicCode.SourceGenerator.Metadata.Roslyn;
 using DynamicCode.SourceGenerator.Models.Config;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 
 namespace DynamicCode.SourceGenerator.Models.Rendering
 {

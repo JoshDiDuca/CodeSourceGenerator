@@ -1,4 +1,4 @@
-﻿namespace DynamicCode.SourceGenerator.Models
+﻿namespace DynamicCode.SourceGenerator.Models.RenderModels
 {
     /// <summary>
     /// Represents a generic type parameter.

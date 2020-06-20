@@ -1,15 +1,15 @@
 ﻿{
   "Settings": {
-
   },
   "Builders": [
     {
-      "InputMatchers": [ "Class", "Enum" ],
+      "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
+      "Assemblies":[ "DynamicCode.SourceGenerator.Models" ],
       "OutputName": "Output/Documentation/Objects.txt",
       "Template": "CodeGen/documentationModel.scriban"
     },
     {
-      "InputMatchers": [ "Model" ],
+      "InputMatcher":"Model",
       "OutputName": "Output/Typescript/{{ name }}.ts",
       "Template": "CodeGen/typescriptModel.scriban"
     }

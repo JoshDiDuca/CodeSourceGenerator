@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Collections;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
 {

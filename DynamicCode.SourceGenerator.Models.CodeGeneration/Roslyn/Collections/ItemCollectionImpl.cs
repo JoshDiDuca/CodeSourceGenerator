@@ -1,4 +1,4 @@
-using System;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 using System.Collections.Generic;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
@@ -9,19 +9,19 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
         {
         }
 
-        public Func<Object, IEnumerable<string>> AttributeFilterSelector => i =>
+        public System.Func<Object, IEnumerable<string>> AttributeFilterSelector => i =>
         {
             var item = i as T;
             return item == null ? new string[0] : GetAttributeFilter(item);
         };
 
-        public Func<Object, IEnumerable<string>> InheritanceFilterSelector => i =>
+        public System.Func<Object, IEnumerable<string>> InheritanceFilterSelector => i =>
         {
             var item = i as T;
             return item == null ? new string[0] : GetInheritanceFilter(item);
         };
 
-        public Func<Object, IEnumerable<string>> ItemFilterSelector => i =>
+        public System.Func<Object, IEnumerable<string>> ItemFilterSelector => i =>
         {
             var item = i as T;
             return item == null ? new string[0] : GetItemFilter(item);

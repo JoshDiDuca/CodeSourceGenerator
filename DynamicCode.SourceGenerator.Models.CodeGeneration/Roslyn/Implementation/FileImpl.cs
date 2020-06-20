@@ -1,6 +1,7 @@
 ﻿using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Models;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 using System.Collections.Generic;
 
 namespace DynamicCode.SourceGenerator.CodeGeneration.Implementation

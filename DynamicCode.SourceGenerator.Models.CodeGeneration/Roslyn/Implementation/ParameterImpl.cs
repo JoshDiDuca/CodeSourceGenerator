@@ -4,6 +4,7 @@ using System.Linq;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Collections;
 using DynamicCode.SourceGenerator.Models;
 using DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation;
+using DynamicCode.SourceGenerator.Models.RenderModels;
 
 namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
 {
