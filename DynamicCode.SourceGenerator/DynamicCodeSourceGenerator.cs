@@ -153,6 +153,22 @@ namespace DynamicCode.SourceGenerator
                         queryObjects.AddRange(matchedObjects);
                 }
             }
+
+            if (builder.InputIgnoreMatchers != null && builder.InputIgnoreMatchers.Any())
+            {
+                foreach (var matcher in builder.InputIgnoreMatchers)
+                {
+                    var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
+                    if (matchedObjects != null)
+                    {
+                        foreach (var match in matchedObjects)
+                        {
+                            queryObjects = queryObjects.Where(o => o.FullName != match.FullName).ToList();
+                        }
+                    }
+                }
+            }
+
             return queryObjects;
         }
 

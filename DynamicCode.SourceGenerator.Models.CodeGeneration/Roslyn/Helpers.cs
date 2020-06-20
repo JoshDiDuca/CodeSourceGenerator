@@ -1,4 +1,5 @@
 ﻿using DynamicCode.SourceGenerator.Metadata.Interfaces;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -82,6 +83,8 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
             if (metadata.IsGeneric)
                 return metadata.Name + string.Concat("<", string.Join(", ", metadata.TypeArguments.Select(GetTypeScriptName)), ">");
+
+            string fullName = metadata.IsNullable ? metadata.FullName.TrimEnd('?') : metadata.FullName;
 
             return ExtractTypeScriptName(metadata);
         }
