@@ -8,6 +8,7 @@ Dynamic code source generator is a library which allows you to generate source f
 
 - Templating using scriban
 - Completely flexible templating
+- Generate any type of file
 
 ## To Do
 
@@ -18,6 +19,7 @@ Dynamic code source generator is a library which allows you to generate source f
 - File Generation
 - - Basic File ✔
 - - Multiple templates in file ✔
+- - Deleting fileshh
 - Object Template Integration
 - - Name ✔
 - - Properties ✔
@@ -25,7 +27,10 @@ Dynamic code source generator is a library which allows you to generate source f
 - - Methods ✔
 - - Attributes  ✔
 - - Type ✔
-
+- Examples
+- - Typescript Models
+- - Typescript Services
+- - Markup Documentation ✔
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
