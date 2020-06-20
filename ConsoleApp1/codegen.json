@@ -4,9 +4,9 @@
   },
   "Builders": [
     {
-      "ObjectNames": "Model",
-      "OutputName": "{{ name }}.cs",
-      "Template": "CodeGen/serviceTemplate.scriban"
+      "InputMatchers": [ "Model" ],
+      "OutputName": "Output/{{ name }}.ts",
+      "Template": "CodeGen/typescriptModel.scriban"
     }
   ]
 }

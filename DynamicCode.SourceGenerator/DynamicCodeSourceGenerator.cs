@@ -14,6 +14,7 @@ using DynamicCode.SourceGenerator.Models.Rendering;
 using System.Diagnostics;
 using Scriban.Runtime;
 using DynamicCode.SourceGenerator.Functions;
+using DynamicCode.SourceGenerator.Common;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -25,7 +26,8 @@ namespace DynamicCode.SourceGenerator
         private int currentGeneration = 0;
 
         private Dictionary<string, List<GenerationModel<string>>> _generations;
-        public List<KeyValuePair<string, string>> CurrentGenerations => _generations?.Where(p => p.Value.Any(g => g.Generation == currentGeneration))?.Select(g => new KeyValuePair<string, string>(g.Key, g.Value.FirstOrDefault(g => g.Generation == currentGeneration).Model))?.ToList();
+        public List<KeyValuePair<string, string>> CurrentGenerations => GetGeneration(currentGeneration);
+        public List<KeyValuePair<string, string>> PreviousGenerations => GetGeneration(currentGeneration - 1);
 
         public void Initialize(InitializationContext context)
         {
@@ -51,17 +53,15 @@ namespace DynamicCode.SourceGenerator
                 List<string> assemblies = builder.Assemblies ?? new List<string>();
                 assemblies.Add(context.Compilation.Assembly.Name);
 
-                var queryObjects = _visitor.QueryObjects(builder.ObjectNames, assemblies);
-
-                foreach (INamedItem @object in queryObjects)
+                foreach (INamedItem @object in GetMatchedObjects(builder, assemblies))
                 {
                     var scriptObject = new ScriptObject();
                     scriptObject.Import(typeof(StringFunctions));
 
                     var renderModel = RenderModel.FromNamedItem(builder, @object);
+                    scriptObject.Import(renderModel);
 
-                    var templateContext = new TemplateContext(ScriptObject.From(renderModel));
-                    templateContext.PushGlobal(scriptObject);
+                    var templateContext = new TemplateContext(scriptObject);
 
                     var template = Template.Parse(File.ReadAllText(builder.Template));
                     var fileNameTemplate = Template.Parse(builder.OutputName);
@@ -92,14 +92,67 @@ namespace DynamicCode.SourceGenerator
 
                 }
 
+                foreach (var pair in PreviousGenerations)
+                {
+                    if (File.Exists(pair.Key))
+                    {
+                        File.Delete(pair.Key);
+                    }
+                }
+
                 foreach (var pair in CurrentGenerations)
                 {
-                    var source = SourceText.From(pair.Value, Encoding.UTF8);
+                    try
+                    {
+                        var source = SourceText.From(pair.Value, Encoding.UTF8);
+                        if (!string.IsNullOrEmpty(pair.Key))
+                        {
+                            context.AddSource(pair.Key, source);
+                            if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
+                            {
+                                Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
+                            }
+                            if (File.Exists(pair.Key))
+                            {
+                                File.Delete(pair.Key);
+                            }
+                            File.WriteAllText(pair.Key, source.ToString());
+                        }
+                    } 
+                    catch (Exception ex)
+                    {
+                        Logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
 
-                    context.AddSource(pair.Key, source);
-                    File.WriteAllText(pair.Key, source.ToString());
+
+                    }
                 }
             }
         }
+
+        private List<INamedItem> GetMatchedObjects(CodeGenerationConfigBuilder builder, List<string> assemblies)
+        {
+            List<INamedItem> queryObjects = new List<INamedItem>();
+
+            if (!string.IsNullOrEmpty(builder.InputMatcher))
+            {
+                var matchedObjects = _visitor.QueryObjects(builder.InputMatcher, assemblies);
+                if (matchedObjects != null)
+                    queryObjects.AddRange(matchedObjects);
+            }
+
+            if (builder.InputMatchers != null && builder.InputMatchers.Any())
+            {
+                foreach (var matcher in builder.InputMatchers)
+                {
+                    var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
+                    if (matchedObjects != null)
+                        queryObjects.AddRange(matchedObjects);
+                }
+            }
+            return queryObjects;
+        }
+
+        private List<KeyValuePair<string, string>> GetGeneration(int generation)
+            => _generations?.Where(p => p.Value.Any(g => g.Generation == generation))?.Select(g => new KeyValuePair<string, string>(g.Key, g.Value.FirstOrDefault(g => g.Generation == generation).Model))?.ToList();
     }
 }

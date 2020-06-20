@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp1.TestModels
+namespace ConsoleApp1.Input
 {
     class TestModel
     {
