@@ -29,7 +29,7 @@ Dynamic code source generator is a library which allows you to generate source f
 - - Basic File ✔
 - - Multiple templates in file ✔
 - - Deleting files
-- Object Template Integration ✔ [See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md)
+- Object Template Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
 - Examples
 - - Typescript Models
 - - Typescript Services
