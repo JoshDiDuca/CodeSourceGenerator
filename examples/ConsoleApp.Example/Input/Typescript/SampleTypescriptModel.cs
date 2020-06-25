@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp1.Input.Typescript
+namespace ConsoleApp.Example.Input.Typescript
 {
     public class SampleTypescriptModel
     {

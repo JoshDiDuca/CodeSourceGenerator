@@ -1,3 +1,119 @@
+# Method
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsAbstract (bool)
+- IsGeneric (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
+
+# Parameter
+
+Properties
+
+- Attributes (IEnumerable)
+- FullName (string)
+- DefaultValue (string)
+- HasDefaultValue (bool)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+
+# Interface
+
+Properties
+
+- Attributes (IEnumerable)
+- ContainingClass (Class)
+- DocComment (DocComment)
+- Events (IEnumerable)
+- FullName (string)
+- Interfaces (IEnumerable)
+- IsGeneric (bool)
+- Methods (IEnumerable)
+- Name (string)
+- Namespace (string)
+- Parent (Object)
+- Properties (IEnumerable)
+- TypeArguments (IEnumerable)
+- TypeParameters (IEnumerable)
+- Type (Type)
+
+# Field
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+
+# EnumValue
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Value (long)
+
+# ParameterComment
+
+Properties
+
+- Name (string)
+- Description (string)
+- Parent (Object)
+
+# Constant
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+- Value (string)
+
+# TypeParameter
+
+Properties
+
+- Name (string)
+- Parent (Object)
+
+# Attribute
+
+Properties
+
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Value (string)
+
+# File
+
+Properties
+
+- Classes (IEnumerable)
+- Delegates (DelegateCollection)
+- Enums (IEnumerable)
+- Interfaces (IEnumerable)
+- FullName (string)
+- Name (string)
+
 # Type
 
 Properties
@@ -35,45 +151,7 @@ Properties
 - TypeParameters (IEnumerable)
 - TupleElements (IEnumerable)
 
-# Method
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- IsAbstract (bool)
-- IsGeneric (bool)
-- Name (string)
-- Parameters (ParameterCollection)
-- Parent (Object)
-- Type (Type)
-- TypeParameters (IEnumerable)
-
-# FieldCollection
-
-Properties
-
-
-# Parameter
-
-Properties
-
-- Attributes (IEnumerable)
-- FullName (string)
-- DefaultValue (string)
-- HasDefaultValue (bool)
-- Name (string)
-- Parent (Object)
-- Type (Type)
-
-# Object
-
-Properties
-
-- Template (string)
-
-# EnumValue
+# Event
 
 Properties
 
@@ -82,7 +160,7 @@ Properties
 - FullName (string)
 - Name (string)
 - Parent (Object)
-- Value (long)
+- Type (Type)
 
 # Enum
 
@@ -99,87 +177,14 @@ Properties
 - Values (EnumValueCollection)
 - Type (Type)
 
-# ParameterComment
+# DocComment
 
 Properties
 
-- Name (string)
-- Description (string)
+- Summary (string)
+- Returns (string)
+- Parameters (ParameterCommentCollection)
 - Parent (Object)
-
-# Delegate
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- IsGeneric (bool)
-- Name (string)
-- Parameters (ParameterCollection)
-- Parent (Object)
-- Type (Type)
-- TypeParameters (IEnumerable)
-
-# Constant
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Type (Type)
-- Value (string)
-
-# TypeParameter
-
-Properties
-
-- Name (string)
-- Parent (Object)
-
-# Interface
-
-Properties
-
-- Attributes (IEnumerable)
-- ContainingClass (Class)
-- DocComment (DocComment)
-- Events (IEnumerable)
-- FullName (string)
-- Interfaces (IEnumerable)
-- IsGeneric (bool)
-- Methods (IEnumerable)
-- Name (string)
-- Namespace (string)
-- Parent (Object)
-- Properties (IEnumerable)
-- TypeArguments (IEnumerable)
-- TypeParameters (IEnumerable)
-- Type (Type)
-
-# File
-
-Properties
-
-- Classes (IEnumerable)
-- Delegates (DelegateCollection)
-- Enums (IEnumerable)
-- Interfaces (IEnumerable)
-- FullName (string)
-- Name (string)
-
-# EnumValueCollection
-
-Properties
-
-
-# DelegateCollection
-
-Properties
-
 
 # Class
 
@@ -209,6 +214,26 @@ Properties
 - TypeParameters (IEnumerable)
 - Type (Type)
 
+# Delegate
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsGeneric (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
+
+# Object
+
+Properties
+
+- Template (string)
+
 # Property
 
 Properties
@@ -222,53 +247,3 @@ Properties
 - Name (string)
 - Parent (Object)
 - Type (Type)
-
-# ParameterCollection
-
-Properties
-
-
-# Field
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Type (Type)
-
-# Event
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Type (Type)
-
-# ParameterCommentCollection
-
-Properties
-
-
-# DocComment
-
-Properties
-
-- Summary (string)
-- Returns (string)
-- Parameters (ParameterCommentCollection)
-- Parent (Object)
-
-# Attribute
-
-Properties
-
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Value (string)

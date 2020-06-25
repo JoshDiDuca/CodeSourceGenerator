@@ -95,40 +95,40 @@ namespace DynamicCode.SourceGenerator
                     }
 
                 }
+            }
 
-                foreach (var pair in PreviousGenerations)
+            foreach (var pair in PreviousGenerations)
+            {
+                if (File.Exists(pair.Key))
                 {
-                    if (File.Exists(pair.Key))
+                    File.Delete(pair.Key);
+                }
+            }
+
+            foreach (var pair in CurrentGenerations)
+            {
+                try
+                {
+                    var source = SourceText.From(pair.Value, Encoding.UTF8);
+                    if (!string.IsNullOrEmpty(pair.Key))
                     {
-                        File.Delete(pair.Key);
+                        context.AddSource(Path.GetFileName(pair.Key), source);
+                        if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
+                        }
+                        if (File.Exists(pair.Key))
+                        {
+                            File.Delete(pair.Key);
+                        }
+                        File.WriteAllText(pair.Key, source.ToString());
                     }
                 }
-
-                foreach (var pair in CurrentGenerations)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        var source = SourceText.From(pair.Value, Encoding.UTF8);
-                        if (!string.IsNullOrEmpty(pair.Key))
-                        {
-                            context.AddSource(pair.Key, source);
-                            if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
-                            {
-                                Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
-                            }
-                            if (File.Exists(pair.Key))
-                            {
-                                File.Delete(pair.Key);
-                            }
-                            File.WriteAllText(pair.Key, source.ToString());
-                        }
-                    } 
-                    catch (Exception ex)
-                    {
-                        Logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
+                    Logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
 
 
-                    }
                 }
             }
         }
