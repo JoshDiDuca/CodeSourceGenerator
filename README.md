@@ -38,8 +38,11 @@ Dynamic code source generator is a library which allows you to generate source f
 ## Additional Links
 
 https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/
+
 https://github.com/dotnet/roslyn-sdk/tree/master/samples/CSharp/SourceGenerators
+
 https://github.com/dotnet/roslyn/blob/master/docs/features/source-generators.md
+
 https://github.com/dotnet/roslyn/blob/master/docs/features/source-generators.cookbook.md
 
 ## Contributing
