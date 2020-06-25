@@ -16,10 +16,15 @@ Dynamic code source generator is a library which allows you to generate source f
 - Config File ✔
 - - Basic Code Finding ✔
 - - Output Name Template ✔
+- - Http Template Loading
+- - File Directory Template Loading
+- - Pre Built Templates
+- - Header File
+- - Turn off adding source to compilation
 - File Generation
 - - Basic File ✔
 - - Multiple templates in file ✔
-- - Deleting fileshh
+- - Deleting files
 - Object Template Integration
 - - Name ✔
 - - Properties ✔
@@ -31,6 +36,10 @@ Dynamic code source generator is a library which allows you to generate source f
 - - Typescript Models
 - - Typescript Services
 - - Markup Documentation ✔
+
+https://github.com/dotnet/roslyn/blob/master/docs/features/source-generators.md
+https://github.com/dotnet/roslyn/blob/master/docs/features/source-generators.cookbook.md
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
