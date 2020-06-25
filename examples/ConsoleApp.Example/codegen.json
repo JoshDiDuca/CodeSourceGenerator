@@ -10,7 +10,7 @@
         "Template": "CodeGen/documentationModel.scriban"
     },
     {
-        "InputMatcher": "SampleTypescriptClass",
+        "InputMatcher": "SampleTypescriptModel",
         "OutputName": "Output/Typescript/{{ name }}.ts",
         "Template": "CodeGen/typescriptModel.scriban"
     }
