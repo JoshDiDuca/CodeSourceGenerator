@@ -20,16 +20,21 @@ Dynamic code source generator is a library which allows you to generate source f
 - Config File ✔
 - - Basic Code Finding ✔
 - - Output Name Template ✔
+- - Turn off adding source to compilation
 - - Http Template Loading
 - - File Directory Template Loading
 - - Pre Built Templates
 - - Header File
-- - Turn off adding source to compilation
 - File Generation
 - - Basic File ✔
 - - Multiple templates in file ✔
 - - Deleting files
-- Object Template Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
+- Template Integration
+- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
+- - Language Helper Functions/Names
+- - - Typescript ✔
+- - - Case functions (in progress)
+- - - SQL?
 - Examples
 - - Typescript Models
 - - Typescript Services
