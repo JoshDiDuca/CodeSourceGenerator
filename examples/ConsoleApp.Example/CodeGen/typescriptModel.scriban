@@ -1,6 +1,6 @@
 ﻿//GENERATED FOR: {{ template }}
 
-export class {{ name }}_Generated {
+export class {{ name }} {
 	{{for property in properties}} 
 	{{for attribute in property.attributes}}[{{ attribute.name }}]{{end}}
 	public {{ to_camel_case property.name }} : {{ property.type.typescript_name }};

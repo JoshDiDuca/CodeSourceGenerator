@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Output\Documentation\" />
+    <Folder Include="Output\Debug\" />
+    <Folder Include="Output\Typescript\" />
   </ItemGroup>
 
 </Project>

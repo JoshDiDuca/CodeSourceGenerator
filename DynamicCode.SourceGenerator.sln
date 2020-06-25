@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator", "DynamicCode.SourceGenerator\DynamicCode.SourceGenerator.csproj", "{5EC1F33A-447A-401E-B560-37C9A27831D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{7556C490-AB4F-4C08-9FFD-54E1EEE2E03C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp.Example", "examples/ConsoleApp.Example\ConsoleApp.Example.csproj", "{7556C490-AB4F-4C08-9FFD-54E1EEE2E03C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{83C07D77-AA1C-48DC-BBF8-A51FCEB9C972}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Common", "DynamicCode.SourceGenerator.Common\DynamicCode.SourceGenerator.Common.csproj", "{CDCEA78E-881E-4115-B046-B432563E3801}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicCode.SourceGenerator.Visitors", "DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj", "{34FCE0DA-3A33-4D27-BB93-64E65C6BAFD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Visitors", "DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj", "{34FCE0DA-3A33-4D27-BB93-64E65C6BAFD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

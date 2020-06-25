@@ -1,9 +1,9 @@
 ﻿
 namespace ConsoleApp1.Input.Typescript
 {
-    class TestModel
+    public class SampleTypescriptModel
     {
-        private string TestProperty { get; set; }
+        public string TestProperty { get; set; }
         public string TestField;
         public void TestMethod() { 
         

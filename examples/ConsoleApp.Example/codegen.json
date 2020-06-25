@@ -1,0 +1,18 @@
+﻿{
+  "Settings": {
+  },
+  "Builders": [
+    {
+        "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
+        "InputIgnoreMatchers": [ "Collection" ],
+        "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
+        "OutputName": "Output/Documentation/Objects.txt",
+        "Template": "CodeGen/documentationModel.scriban"
+    },
+    {
+        "InputMatcher": "SampleTypescriptClass",
+        "OutputName": "Output/Typescript/{{ name }}.ts",
+        "Template": "CodeGen/typescriptModel.scriban"
+    }
+  ]
+}

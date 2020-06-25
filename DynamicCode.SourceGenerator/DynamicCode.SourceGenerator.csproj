@@ -6,13 +6,24 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsTool>true</IsTool>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!-- Generates a package at build -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!-- Do not include the generator as a lib dependency -->
+  </PropertyGroup>
+
+  <PropertyGroup>
     <RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json ;$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.6.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.7.0-2.final" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
+    <!-- Take a private dependency on Newtonsoft.Json (PrivateAssets=all) Consumers of this generator will not reference it.
+         Set GeneratePathProperty=true so we can reference the binaries via the PKGNewtonsoft_Json property -->
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +33,6 @@
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj" />
-    <ProjectReference Include="..\DynamicCorde.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,9 +44,5 @@
   <ItemGroup>
     <Folder Include="Attributes\" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <IsTool>true</IsTool>
-  </PropertyGroup>
 
 </Project>
