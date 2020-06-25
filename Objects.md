@@ -2,248 +2,248 @@
 
 Properties
 
-- Name
-- Parent
-
-# Type
-
-Properties
-
-- Attributes
-- BaseClass
-- Constants
-- ContainingClass
-- Delegates
-- DocComment
-- Fields
-- FullName
-- Interfaces
-- IsDate
-- IsDefined
-- IsEnum
-- IsEnumerable
-- IsGeneric
-- IsGuid
-- IsNullable
-- IsPrimitive
-- IsTask
-- IsTimeSpan
-- IsValueTuple
-- Methods
-- Name
-- Namespace
-- NestedClasses
-- NestedEnums
-- NestedInterfaces
-- TypescriptName
-- Parent
-- Properties
-- TypeArguments
-- TypeParameters
-- TupleElements
-
-# Property
-
-Properties
-
-- Attributes
-- DocComment
-- FullName
-- HasGetter
-- HasSetter
-- IsAbstract
-- Name
-- Parent
-- Type
-
-# Parameter
-
-Properties
-
-- Attributes
-- FullName
-- DefaultValue
-- HasDefaultValue
-- Name
-- Parent
-- Type
+- Name (string)
+- Parent (Object)
 
 # Object
 
 Properties
 
-- Template
+- Template (string)
+
+# Property
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- HasGetter (bool)
+- HasSetter (bool)
+- IsAbstract (bool)
+- Name (string)
+- Parent (Object)
+- Type (Type)
 
 # Method
 
 Properties
 
-- Attributes
-- DocComment
-- FullName
-- IsAbstract
-- IsGeneric
-- Name
-- Parameters
-- Parent
-- Type
-- TypeParameters
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsAbstract (bool)
+- IsGeneric (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
 
 # Interface
 
 Properties
 
-- Attributes
-- ContainingClass
-- DocComment
-- Events
-- FullName
-- Interfaces
-- IsGeneric
-- Methods
-- Name
-- Namespace
-- Parent
-- Properties
-- TypeArguments
-- TypeParameters
-- Type
-
-# File
-
-Properties
-
-- Classes
-- Delegates
-- Enums
-- Interfaces
-- FullName
-- Name
+- Attributes (IEnumerable)
+- ContainingClass (Class)
+- DocComment (DocComment)
+- Events (IEnumerable)
+- FullName (string)
+- Interfaces (IEnumerable)
+- IsGeneric (bool)
+- Methods (IEnumerable)
+- Name (string)
+- Namespace (string)
+- Parent (Object)
+- Properties (IEnumerable)
+- TypeArguments (IEnumerable)
+- TypeParameters (IEnumerable)
+- Type (Type)
 
 # Field
 
 Properties
 
-- Attributes
-- DocComment
-- FullName
-- Name
-- Parent
-- Type
-
-# Event
-
-Properties
-
-- Attributes
-- DocComment
-- FullName
-- Name
-- Parent
-- Type
-
-# EnumValue
-
-Properties
-
-- Attributes
-- DocComment
-- FullName
-- Name
-- Parent
-- Value
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
 
 # Enum
 
 Properties
 
-- Attributes
-- ContainingClass
-- DocComment
-- FullName
-- IsFlags
-- Name
-- Namespace
-- Parent
-- Values
-- Type
-
-# ParameterComment
-
-Properties
-
-- Name
-- Description
-- Parent
-
-# DocComment
-
-Properties
-
-- Summary
-- Returns
-- Parameters
-- Parent
-
-# Delegate
-
-Properties
-
-- Attributes
-- DocComment
-- FullName
-- IsGeneric
-- Name
-- Parameters
-- Parent
-- Type
-- TypeParameters
+- Attributes (IEnumerable)
+- ContainingClass (Class)
+- DocComment (DocComment)
+- FullName (string)
+- IsFlags (bool)
+- Name (string)
+- Namespace (string)
+- Parent (Object)
+- Values (EnumValueCollection)
+- Type (Type)
 
 # Constant
 
 Properties
 
-- Attributes
-- DocComment
-- FullName
-- Name
-- Parent
-- Type
-- Value
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+- Value (string)
 
-# Class
+# ParameterComment
 
 Properties
 
-- Attributes
-- BaseClass
-- Constants
-- ContainingClass
-- Delegates
-- DocComment
-- Events
-- Fields
-- FullName
-- Interfaces
-- IsAbstract
-- IsGeneric
-- Methods
-- Name
-- Namespace
-- NestedClasses
-- NestedEnums
-- NestedInterfaces
-- Parent
-- Properties
-- TypeArguments
-- TypeParameters
-- Type
+- Name (string)
+- Description (string)
+- Parent (Object)
 
 # Attribute
 
 Properties
 
-- FullName
-- Name
-- Parent
-- Value
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Value (string)
+
+# Parameter
+
+Properties
+
+- Attributes (IEnumerable)
+- FullName (string)
+- DefaultValue (string)
+- HasDefaultValue (bool)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+
+# File
+
+Properties
+
+- Classes (IEnumerable)
+- Delegates (DelegateCollection)
+- Enums (IEnumerable)
+- Interfaces (IEnumerable)
+- FullName (string)
+- Name (string)
+
+# Event
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+
+# DocComment
+
+Properties
+
+- Summary (string)
+- Returns (string)
+- Parameters (ParameterCommentCollection)
+- Parent (Object)
+
+# EnumValue
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Value (long)
+
+# Class
+
+Properties
+
+- Attributes (IEnumerable)
+- BaseClass (Class)
+- Constants (IEnumerable)
+- ContainingClass (Class)
+- Delegates (IEnumerable)
+- DocComment (DocComment)
+- Events (IEnumerable)
+- Fields (IEnumerable)
+- FullName (string)
+- Interfaces (IEnumerable)
+- IsAbstract (bool)
+- IsGeneric (bool)
+- Methods (IEnumerable)
+- Name (string)
+- Namespace (string)
+- NestedClasses (IEnumerable)
+- NestedEnums (IEnumerable)
+- NestedInterfaces (IEnumerable)
+- Parent (Object)
+- Properties (IEnumerable)
+- TypeArguments (IEnumerable)
+- TypeParameters (IEnumerable)
+- Type (Type)
+
+# Delegate
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsGeneric (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
+
+# Type
+
+Properties
+
+- Attributes (IEnumerable)
+- BaseClass (Class)
+- Constants (IEnumerable)
+- ContainingClass (Class)
+- Delegates (IEnumerable)
+- DocComment (DocComment)
+- Fields (IEnumerable)
+- FullName (string)
+- Interfaces (IEnumerable)
+- IsDate (bool)
+- IsDefined (bool)
+- IsEnum (bool)
+- IsEnumerable (bool)
+- IsGeneric (bool)
+- IsGuid (bool)
+- IsNullable (bool)
+- IsPrimitive (bool)
+- IsTask (bool)
+- IsTimeSpan (bool)
+- IsValueTuple (bool)
+- Methods (IEnumerable)
+- Name (string)
+- Namespace (string)
+- NestedClasses (IEnumerable)
+- NestedEnums (IEnumerable)
+- NestedInterfaces (IEnumerable)
+- TypescriptName (string)
+- Parent (Object)
+- Properties (IEnumerable)
+- TypeArguments (IEnumerable)
+- TypeParameters (IEnumerable)
+- TupleElements (IEnumerable)
