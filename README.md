@@ -16,7 +16,6 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 ## To Do
 
 - Scriban integration ✔
-- File Watching (Waiting on preview release)
 - Config File ✔
 - - Basic Code Finding ✔
 - - Output Name Template ✔
@@ -30,6 +29,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Basic File ✔
 - - Multiple templates in file ✔
 - - Deleting files
+- - File Watching (Waiting on preview release)
 - Template Integration
 - - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
 - - Language Helper Functions/Names
