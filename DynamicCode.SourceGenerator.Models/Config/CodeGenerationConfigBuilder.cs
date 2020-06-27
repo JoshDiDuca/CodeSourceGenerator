@@ -6,7 +6,8 @@ namespace DynamicCode.SourceGenerator.Models.Config
     {
         public string Template { get; set; }
         public string HeaderTemplate { get; set; }
-        public string OutputName { get; set; }
+        public string OutputTemplate { get; set; }
+        public List<string> OutputTemplates { get; set; }
         public string InputMatcher { get; set; }
         public bool AddToCompilation { get; set; } = true;
         public List<string> InputMatchers { get; set; }

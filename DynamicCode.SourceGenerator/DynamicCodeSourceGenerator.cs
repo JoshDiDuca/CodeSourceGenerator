@@ -68,34 +68,55 @@ namespace DynamicCode.SourceGenerator
                     templateContext.PushGlobal(scriptObject);
 
                     var template = Template.Parse(File.ReadAllText(builder.Template));
-                    var fileNameTemplate = Template.Parse(builder.OutputName);
+
+                    var fileNameTemplates = new List<Template>();
+
+                    if (builder.OutputTemplates != null && builder.OutputTemplates.Any())
+                    {
+                        fileNameTemplates.AddRange(builder.OutputTemplates.Select(t => Template.Parse(t)));
+                    }
+                    else
+                    {
+                        fileNameTemplates.Add(Template.Parse(builder.OutputTemplate));
+                    }
+
 
                     var result = template.Render(templateContext);
-                    var fileName = fileNameTemplate.Render(renderModel);
 
-                    var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
+                    var fileNames = new List<string>();
+
+                    foreach (var fileNameTemplate in fileNameTemplates)
+                    {
+                        fileNames.Add(fileNameTemplate.Render(renderModel));
+                    }
 
                     var renderResult = new RenderResultModel { Result = result, BuilderConfig = builder };
 
                     var newGeneration = new GenerationModel<RenderResultModel>(currentGeneration, renderResult);
-                    if (previousGens is null || !previousGens.Any())
+
+                    foreach (var fileName in fileNames)
                     {
-                        _generations.Add(fileName, new List<GenerationModel<RenderResultModel>> { newGeneration });
-                    } 
-                    else
-                    {
-                        var currentGen = previousGens.FirstOrDefault(g => g.Generation == currentGeneration);
-                        if(currentGen == null)
+
+                        var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
+
+                        if (previousGens is null || !previousGens.Any())
                         {
-                            previousGens.Add(newGeneration);
-                        } 
+                            _generations.Add(fileName, new List<GenerationModel<RenderResultModel>> { newGeneration });
+                        }
                         else
                         {
-                            result = currentGen.Model + Environment.NewLine + Environment.NewLine + result;
-                            currentGen.Model = renderResult;
+                            var currentGen = previousGens.FirstOrDefault(g => g.Generation == currentGeneration);
+                            if (currentGen == null)
+                            {
+                                previousGens.Add(newGeneration);
+                            }
+                            else
+                            {
+                                result = currentGen.Model + Environment.NewLine + Environment.NewLine + result;
+                                currentGen.Model = renderResult;
+                            }
                         }
                     }
-
                 }
             }
 
