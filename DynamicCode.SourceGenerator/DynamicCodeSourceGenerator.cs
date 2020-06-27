@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Scriban.Runtime;
 using DynamicCode.SourceGenerator.Functions;
 using DynamicCode.SourceGenerator.Common;
+using DynamicCode.SourceGenerator.Engines;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -23,17 +24,15 @@ namespace DynamicCode.SourceGenerator
     {
         private CodeGenerationConfig _config;
         private SourceFileSymbolVisitor _visitor;
-        private int currentGeneration = 0;
-
-        private Dictionary<string, List<GenerationModel<RenderResultModel>>> _generations;
-        public List<KeyValuePair<string, RenderResultModel>> CurrentGenerations => GetGeneration(currentGeneration);
-        public List<KeyValuePair<string, RenderResultModel>> PreviousGenerations => GetGeneration(currentGeneration - 1);
+        
+        private RenderEngine _renderEngine;
+        private GenerationEngine _generationEngine;
 
         public void Initialize(InitializationContext context)
         {
             Debugger.Launch();
-            currentGeneration = 0;
-            _generations = new Dictionary<string, List<GenerationModel<RenderResultModel>>>();
+            _renderEngine = new RenderEngine();
+            _generationEngine = new GenerationEngine();
             _visitor = new SourceFileSymbolVisitor();
         }
 
@@ -44,12 +43,12 @@ namespace DynamicCode.SourceGenerator
             if (_config?.Builders == null)
                 return;
 
-            currentGeneration++;
-            _visitor.Visit(context.Compilation.GlobalNamespace);
-            WriteGeneratedCode(context);
+            _generationEngine.NewGeneration();
+
+            GenerateCode(context);
         }
 
-        private void WriteGeneratedCode(SourceGeneratorContext context)
+        private void GenerateCode(SourceGeneratorContext context)
         {
             foreach (CodeGenerationConfigBuilder builder in _config.Builders)
             {
@@ -59,152 +58,24 @@ namespace DynamicCode.SourceGenerator
                     continue;
                 }
 
-                List<string> assemblies = builder.Input.Assemblies ?? new List<string>();
-                assemblies.Add(context.Compilation.Assembly.Name);
 
-                foreach (INamedItem @object in GetMatchedObjects(builder, assemblies))
+                foreach (INamedItem @object in _renderEngine.GetMatchedObjects(_visitor, context, builder))
                 {
-                    var scriptObject = new ScriptObject();
-                    scriptObject.Import(typeof(StringFunctions));
+                    var renderResult = _renderEngine.RenderMatch(@object, builder);
 
-                    var renderModel = RenderModel.FromNamedItem(builder, @object);
-                    scriptObject.Import(renderModel);
-
-                    var templateContext = new TemplateContext();
-                    templateContext.PushGlobal(scriptObject);
-
-                    var template = Template.Parse(File.ReadAllText(builder.Input.Template));
-
-                    var fileNameTemplates = new List<Template>();
-
-                    if (builder.Output.OutputPathTemplates != null && builder.Output.OutputPathTemplates.Any())
+                    if (renderResult != null)
                     {
-                        fileNameTemplates.AddRange(builder.Output.OutputPathTemplates.Select(t => Template.Parse(t)));
-                    }
+                        _generationEngine.AddToCurrentGeneration(renderResult);
+                    } 
                     else
-                    {
-                        fileNameTemplates.Add(Template.Parse(builder.Output.OutputPathTemplate));
-                    }
-
-
-                    var result = template.Render(templateContext);
-
-                    var fileNames = new List<string>();
-
-                    foreach (var fileNameTemplate in fileNameTemplates)
-                    {
-                        fileNames.Add(fileNameTemplate.Render(renderModel));
-                    }
-
-                    var renderResult = new RenderResultModel { Result = result, BuilderConfig = builder };
-
-                    var newGeneration = new GenerationModel<RenderResultModel>(currentGeneration, renderResult);
-
-                    foreach (var fileName in fileNames)
-                    {
-                        var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
-
-                        if (previousGens is null || !previousGens.Any())
-                        {
-                            _generations.Add(fileName, new List<GenerationModel<RenderResultModel>> { newGeneration });
-                        }
-                        else
-                        {
-                            var currentGen = previousGens.FirstOrDefault(g => g.Generation == currentGeneration);
-                            if (currentGen == null)
-                            {
-                                previousGens.Add(newGeneration);
-                            }
-                            else
-                            {
-                                renderResult = new RenderResultModel { Result = currentGen.Model.Result + Environment.NewLine + Environment.NewLine + result, BuilderConfig = builder };
-                                currentGen.Model = renderResult;
-                            }
-                        }
+                    { 
+                        Logger.LogError("Skipping generation", "File failed to render.", null);
+                        continue;
                     }
                 }
-            }
 
-            foreach (var pair in PreviousGenerations)
-            {
-                if (File.Exists(pair.Key))
-                {
-                    File.Delete(pair.Key);
-                }
-            }
-
-            foreach (var pair in CurrentGenerations)
-            {
-                try
-                {
-                    var source = SourceText.From(pair.Value?.Result, Encoding.UTF8);
-                    if (!string.IsNullOrEmpty(pair.Key))
-                    {
-                        if (pair.Value.BuilderConfig.Output.AddToCompilation)
-                        {
-                            context.AddSource(Path.GetFileName(pair.Key), source);
-                        }
-
-                        if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
-                        }
-                        if (File.Exists(pair.Key))
-                        {
-                            File.Delete(pair.Key);
-                        }
-                        File.WriteAllText(pair.Key, source.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
-
-
-                }
+                _generationEngine.PublishGeneration(context);
             }
         }
-
-        private List<INamedItem> GetMatchedObjects(CodeGenerationConfigBuilder builder, List<string> assemblies)
-        {
-            List<INamedItem> queryObjects = new List<INamedItem>();
-
-            if (!string.IsNullOrEmpty(builder.Input.InputMatcher))
-            {
-                var matchedObjects = _visitor.QueryObjects(builder.Input.InputMatcher, assemblies);
-                if (matchedObjects != null)
-                    queryObjects.AddRange(matchedObjects);
-            }
-
-            if (builder.Input.InputMatchers != null && builder.Input.InputMatchers.Any())
-            {
-                foreach (var matcher in builder.Input.InputMatchers)
-                {
-                    var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
-                    if (matchedObjects != null)
-                        queryObjects.AddRange(matchedObjects);
-                }
-            }
-
-            if (builder.Input.InputIgnoreMatchers != null && builder.Input.InputIgnoreMatchers.Any())
-            {
-                foreach (var matcher in builder.Input.InputIgnoreMatchers)
-                {
-                    var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
-                    if (matchedObjects != null)
-                    {
-                        foreach (var match in matchedObjects)
-                        {
-                            queryObjects = queryObjects.Where(o => o.FullName != match.FullName).ToList();
-                        }
-                    }
-                }
-            }
-
-            return queryObjects;
-        }
-
-        private List<KeyValuePair<string, RenderResultModel>> GetGeneration(int generation)
-            => _generations?.Where(p => p.Value.Any(g => g.Generation == generation))?.Select(g => new KeyValuePair<string, RenderResultModel>(g.Key, g.Value.FirstOrDefault(g => g.Generation == generation).Model))?.ToList();
     }
 }
