@@ -53,7 +53,13 @@ namespace DynamicCode.SourceGenerator
         {
             foreach (CodeGenerationConfigBuilder builder in _config.Builders)
             {
-                List<string> assemblies = builder.Assemblies ?? new List<string>();
+                if(builder.Input == null || builder.Output == null)
+                {
+                    Logger.LogError("Skipping generation", "Input or ouput object is not provided.", null);
+                    continue;
+                }
+
+                List<string> assemblies = builder.Input.Assemblies ?? new List<string>();
                 assemblies.Add(context.Compilation.Assembly.Name);
 
                 foreach (INamedItem @object in GetMatchedObjects(builder, assemblies))
@@ -67,17 +73,17 @@ namespace DynamicCode.SourceGenerator
                     var templateContext = new TemplateContext();
                     templateContext.PushGlobal(scriptObject);
 
-                    var template = Template.Parse(File.ReadAllText(builder.Template));
+                    var template = Template.Parse(File.ReadAllText(builder.Input.Template));
 
                     var fileNameTemplates = new List<Template>();
 
-                    if (builder.OutputPathTemplates != null && builder.OutputPathTemplates.Any())
+                    if (builder.Output.OutputPathTemplates != null && builder.Output.OutputPathTemplates.Any())
                     {
-                        fileNameTemplates.AddRange(builder.OutputPathTemplates.Select(t => Template.Parse(t)));
+                        fileNameTemplates.AddRange(builder.Output.OutputPathTemplates.Select(t => Template.Parse(t)));
                     }
                     else
                     {
-                        fileNameTemplates.Add(Template.Parse(builder.OutputPathTemplate));
+                        fileNameTemplates.Add(Template.Parse(builder.Output.OutputPathTemplate));
                     }
 
 
@@ -134,7 +140,7 @@ namespace DynamicCode.SourceGenerator
                     var source = SourceText.From(pair.Value?.Result, Encoding.UTF8);
                     if (!string.IsNullOrEmpty(pair.Key))
                     {
-                        if (pair.Value.BuilderConfig.AddToCompilation)
+                        if (pair.Value.BuilderConfig.Output.AddToCompilation)
                         {
                             context.AddSource(Path.GetFileName(pair.Key), source);
                         }
@@ -163,16 +169,16 @@ namespace DynamicCode.SourceGenerator
         {
             List<INamedItem> queryObjects = new List<INamedItem>();
 
-            if (!string.IsNullOrEmpty(builder.InputMatcher))
+            if (!string.IsNullOrEmpty(builder.Input.InputMatcher))
             {
-                var matchedObjects = _visitor.QueryObjects(builder.InputMatcher, assemblies);
+                var matchedObjects = _visitor.QueryObjects(builder.Input.InputMatcher, assemblies);
                 if (matchedObjects != null)
                     queryObjects.AddRange(matchedObjects);
             }
 
-            if (builder.InputMatchers != null && builder.InputMatchers.Any())
+            if (builder.Input.InputMatchers != null && builder.Input.InputMatchers.Any())
             {
-                foreach (var matcher in builder.InputMatchers)
+                foreach (var matcher in builder.Input.InputMatchers)
                 {
                     var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
                     if (matchedObjects != null)
@@ -180,9 +186,9 @@ namespace DynamicCode.SourceGenerator
                 }
             }
 
-            if (builder.InputIgnoreMatchers != null && builder.InputIgnoreMatchers.Any())
+            if (builder.Input.InputIgnoreMatchers != null && builder.Input.InputIgnoreMatchers.Any())
             {
-                foreach (var matcher in builder.InputIgnoreMatchers)
+                foreach (var matcher in builder.Input.InputIgnoreMatchers)
                 {
                     var matchedObjects = _visitor.QueryObjects(matcher, assemblies);
                     if (matchedObjects != null)

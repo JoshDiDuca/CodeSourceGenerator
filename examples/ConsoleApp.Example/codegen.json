@@ -1,19 +1,27 @@
 ﻿{
-  "Settings": {
-  },
-  "Builders": [
-    {
-        "Template": "CodeGen/documentationModel.scriban",
-        "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
-        "InputIgnoreMatchers": [ "Collection" ],
-        "OutputPathTemplates": [ "Output/Documentation/Objects.txt" ],
-        "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
-        "AddToCompilation": false
+    "Settings": {
     },
-    {
-        "Template": "CodeGen/typescriptModel.scriban",
-        "InputMatcher": "SampleTypescriptModel",
-        "OutputPathTemplate": "Output/Typescript/{{ name }}.ts"
-    }
-  ]
+    "Builders": [
+        {
+            "Input": {
+                "Template": "CodeGen/documentationModel.scriban",
+                "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
+                "InputIgnoreMatchers": [ "Collection" ],
+                "Assemblies": [ "DynamicCode.SourceGenerator.Models" ]
+            },
+            "Output": {
+                "OutputPathTemplates": [ "Output/Documentation/Objects.txt" ],
+                "AddToCompilation": false
+            }
+        },
+        {
+            "Input": {
+                "Template": "CodeGen/typescriptModel.scriban",
+                "InputMatcher": "SampleTypescriptModel"
+            },
+            "Output": {
+                "OutputPathTemplate": "Output/Typescript/{{ name }}.ts"
+            }
+        }
+    ]
 }

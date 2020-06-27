@@ -25,7 +25,7 @@ namespace DynamicCode.SourceGenerator.Models.Rendering
             }
             if (returnItem != null)
             {
-                returnItem.Template = builder.Template;
+                returnItem.Template = builder.Input.Template;
             }
             return returnItem;
         }
