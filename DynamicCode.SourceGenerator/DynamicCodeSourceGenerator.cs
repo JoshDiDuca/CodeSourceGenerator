@@ -112,7 +112,7 @@ namespace DynamicCode.SourceGenerator
                             }
                             else
                             {
-                                result = currentGen.Model + Environment.NewLine + Environment.NewLine + result;
+                                renderResult = new RenderResultModel { Result = currentGen.Model.Result + Environment.NewLine + Environment.NewLine + result, BuilderConfig = builder };
                                 currentGen.Model = renderResult;
                             }
                         }

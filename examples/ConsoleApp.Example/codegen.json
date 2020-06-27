@@ -3,17 +3,17 @@
   },
   "Builders": [
     {
+        "Template": "CodeGen/documentationModel.scriban",
         "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
         "InputIgnoreMatchers": [ "Collection" ],
+        "OutputTemplates": [ "Output/Documentation/Objects.txt" ],
         "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
-        "OutputTemplate": "Output/Documentation/Objects.txt",
-        "Template": "CodeGen/documentationModel.scriban",
         "AddToCompilation": false
     },
     {
+        "Template": "CodeGen/typescriptModel.scriban",
         "InputMatcher": "SampleTypescriptModel",
-        "OutputTemplate": "Output/Typescript/{{ name }}.ts",
-        "Template": "CodeGen/typescriptModel.scriban"
+        "OutputTemplate": "Output/Typescript/{{ name }}.ts"
     }
   ]
 }
