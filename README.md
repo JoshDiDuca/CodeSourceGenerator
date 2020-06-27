@@ -21,6 +21,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Output Name Template ✔
 - - Multiple Output Templates ✔
 - - Turn off adding source to compilation ✔
+- - Advanced Code Searching (attributes or a better matcher) 
 - - Http Template Loading
 - - File Directory Template Loading
 - - Pre Built Templates
