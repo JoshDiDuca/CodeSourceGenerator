@@ -6,14 +6,14 @@
         "Template": "CodeGen/documentationModel.scriban",
         "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
         "InputIgnoreMatchers": [ "Collection" ],
-        "OutputTemplates": [ "Output/Documentation/Objects.txt" ],
+        "OutputPathTemplates": [ "Output/Documentation/Objects.txt" ],
         "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
         "AddToCompilation": false
     },
     {
         "Template": "CodeGen/typescriptModel.scriban",
         "InputMatcher": "SampleTypescriptModel",
-        "OutputTemplate": "Output/Typescript/{{ name }}.ts"
+        "OutputPathTemplate": "Output/Typescript/{{ name }}.ts"
     }
   ]
 }

@@ -71,13 +71,13 @@ namespace DynamicCode.SourceGenerator
 
                     var fileNameTemplates = new List<Template>();
 
-                    if (builder.OutputTemplates != null && builder.OutputTemplates.Any())
+                    if (builder.OutputPathTemplates != null && builder.OutputPathTemplates.Any())
                     {
-                        fileNameTemplates.AddRange(builder.OutputTemplates.Select(t => Template.Parse(t)));
+                        fileNameTemplates.AddRange(builder.OutputPathTemplates.Select(t => Template.Parse(t)));
                     }
                     else
                     {
-                        fileNameTemplates.Add(Template.Parse(builder.OutputTemplate));
+                        fileNameTemplates.Add(Template.Parse(builder.OutputPathTemplate));
                     }
 
 
@@ -96,7 +96,6 @@ namespace DynamicCode.SourceGenerator
 
                     foreach (var fileName in fileNames)
                     {
-
                         var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
 
                         if (previousGens is null || !previousGens.Any())
