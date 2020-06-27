@@ -1,6 +1,6 @@
 # Dynamic Code Source Generator
 
-Dynamic code source generator is a library which allows you to generate source files pre compilation with access to objects within the source code. The aim of this project is so it can be used for generating any type of source file easily from a template, whether it be typescript, html, javascript or even documentation.
+Dynamic code source generator is a visual studio analyzer which allows you to generate source files pre compilation with access to objects within the source code. The aim of this project is so it can be used for generating any type of source file easily from a template, whether it be typescript, html, javascript or even documentation.
 
 *This project is built using .NET 5 preview since source generators are currently still a preview feature.*
 
@@ -20,16 +20,21 @@ Dynamic code source generator is a library which allows you to generate source f
 - Config File ✔
 - - Basic Code Finding ✔
 - - Output Name Template ✔
+- - Turn off adding source to compilation
 - - Http Template Loading
 - - File Directory Template Loading
 - - Pre Built Templates
 - - Header File
-- - Turn off adding source to compilation
 - File Generation
 - - Basic File ✔
 - - Multiple templates in file ✔
 - - Deleting files
-- Object Template Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
+- Template Integration
+- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
+- - Language Helper Functions/Names
+- - - Typescript ✔
+- - - Case functions (in progress)
+- - - SQL?
 - Examples
 - - Typescript Models
 - - Typescript Services
