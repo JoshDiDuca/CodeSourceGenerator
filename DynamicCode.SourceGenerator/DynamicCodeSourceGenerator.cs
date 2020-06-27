@@ -25,15 +25,15 @@ namespace DynamicCode.SourceGenerator
         private SourceFileSymbolVisitor _visitor;
         private int currentGeneration = 0;
 
-        private Dictionary<string, List<GenerationModel<string>>> _generations;
-        public List<KeyValuePair<string, string>> CurrentGenerations => GetGeneration(currentGeneration);
-        public List<KeyValuePair<string, string>> PreviousGenerations => GetGeneration(currentGeneration - 1);
+        private Dictionary<string, List<GenerationModel<RenderResultModel>>> _generations;
+        public List<KeyValuePair<string, RenderResultModel>> CurrentGenerations => GetGeneration(currentGeneration);
+        public List<KeyValuePair<string, RenderResultModel>> PreviousGenerations => GetGeneration(currentGeneration - 1);
 
         public void Initialize(InitializationContext context)
         {
             Debugger.Launch();
             currentGeneration = 0;
-            _generations = new Dictionary<string, List<GenerationModel<string>>>();
+            _generations = new Dictionary<string, List<GenerationModel<RenderResultModel>>>();
             _visitor = new SourceFileSymbolVisitor();
         }
 
@@ -75,10 +75,12 @@ namespace DynamicCode.SourceGenerator
 
                     var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
 
-                    var newGeneration = new GenerationModel<string>(currentGeneration, result);
+                    var renderResult = new RenderResultModel { Result = result, BuilderConfig = builder };
+
+                    var newGeneration = new GenerationModel<RenderResultModel>(currentGeneration, renderResult);
                     if (previousGens is null || !previousGens.Any())
                     {
-                        _generations.Add(fileName, new List<GenerationModel<string>>() { newGeneration });
+                        _generations.Add(fileName, new List<GenerationModel<RenderResultModel>> { newGeneration });
                     } 
                     else
                     {
@@ -90,7 +92,7 @@ namespace DynamicCode.SourceGenerator
                         else
                         {
                             result = currentGen.Model + Environment.NewLine + Environment.NewLine + result;
-                            currentGen.Model = result;
+                            currentGen.Model = renderResult;
                         }
                     }
 
@@ -109,10 +111,14 @@ namespace DynamicCode.SourceGenerator
             {
                 try
                 {
-                    var source = SourceText.From(pair.Value, Encoding.UTF8);
+                    var source = SourceText.From(pair.Value?.Result, Encoding.UTF8);
                     if (!string.IsNullOrEmpty(pair.Key))
                     {
-                        context.AddSource(Path.GetFileName(pair.Key), source);
+                        if (pair.Value.BuilderConfig.AddToCompilation)
+                        {
+                            context.AddSource(Path.GetFileName(pair.Key), source);
+                        }
+
                         if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
@@ -172,7 +178,7 @@ namespace DynamicCode.SourceGenerator
             return queryObjects;
         }
 
-        private List<KeyValuePair<string, string>> GetGeneration(int generation)
-            => _generations?.Where(p => p.Value.Any(g => g.Generation == generation))?.Select(g => new KeyValuePair<string, string>(g.Key, g.Value.FirstOrDefault(g => g.Generation == generation).Model))?.ToList();
+        private List<KeyValuePair<string, RenderResultModel>> GetGeneration(int generation)
+            => _generations?.Where(p => p.Value.Any(g => g.Generation == generation))?.Select(g => new KeyValuePair<string, RenderResultModel>(g.Key, g.Value.FirstOrDefault(g => g.Generation == generation).Model))?.ToList();
     }
 }

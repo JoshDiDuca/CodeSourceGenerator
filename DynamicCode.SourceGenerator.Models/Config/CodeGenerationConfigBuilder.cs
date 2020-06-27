@@ -8,6 +8,7 @@ namespace DynamicCode.SourceGenerator.Models.Config
         public string HeaderTemplate { get; set; }
         public string OutputName { get; set; }
         public string InputMatcher { get; set; }
+        public bool AddToCompilation { get; set; } = true;
         public List<string> InputMatchers { get; set; }
         public List<string> InputIgnoreMatchers { get; set; }
         public List<string> Assemblies { get; set; }
