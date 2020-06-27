@@ -5,10 +5,10 @@
     {
         "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
         "InputIgnoreMatchers": [ "Collection" ],
-        "AddToCompilation": false,
         "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
         "OutputName": "Output/Documentation/Objects.txt",
-        "Template": "CodeGen/documentationModel.scriban"
+        "Template": "CodeGen/documentationModel.scriban",
+        "AddToCompilation": false
     },
     {
         "InputMatcher": "SampleTypescriptModel",
