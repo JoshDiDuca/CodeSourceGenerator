@@ -10,9 +10,7 @@ namespace DynamicCode.SourceGenerator.Common
         public static void LogError(string title, string message, Exception ex)
         {
             Debug.WriteLine($"ERROR: {title} - {message}");
-
-            if(ex is not null)
-                Debug.WriteLine($"{ex}");
+            Debug.WriteLine($"{ex}");
         }
     }
 }
