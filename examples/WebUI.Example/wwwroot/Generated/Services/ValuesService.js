@@ -1,7 +1,7 @@
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { baseService } from '../../Base/baseService';
 var ValuesService = (function (_super) {
-    tslib_1.__extends(ValuesService, _super);
+    __extends(ValuesService, _super);
     function ValuesService() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.controllerRoute = 'api/Values';

@@ -1,6 +1,7 @@
 {
     "name": "web-ui-example",
     "version": "1.0.0",
+    "private": true,
     "dependencies": {
         "@types/node": "^14.0.14"
     },

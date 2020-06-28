@@ -10,7 +10,7 @@
                 "Assemblies": [ "DynamicCode.SourceGenerator.Models" ]
             },
             "Output": {
-                "OutputPathTemplates": [ "Output/Documentation/Objects.txt" ],
+                "OutputPathTemplates": [ "Output/Documentation/Objects.md" ],
                 "AddToCompilation": false
             }
         },

@@ -10,7 +10,6 @@
 
 
 import { ValuesResponseViewModel } from '../Models/ValuesResponseViewModel';
-
 import { ValuesRequestViewModel } from '../Models/ValuesRequestViewModel';
 
 
