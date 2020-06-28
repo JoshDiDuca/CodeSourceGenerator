@@ -41,8 +41,8 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
 - - Language Helper Functions/Names
 - - - Typescript ✔
-- - - Case functions (in progress)
-- - - SQL?
+- - - Case functions ✔ (kebab-case, PascalCase, camelCase)
+- - - SQL
 - Examples
 - - Typescript Models ✔
 - - Typescript Services ✔
