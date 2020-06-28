@@ -22,7 +22,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - Config File Input
 - - Basic Code Finding ✔
 - - Turn off adding source to compilation ✔
-- - Advanced Code Searching (attributes?) 
+- - Advanced Code Searching (attributes? & dynamic linq?) 
 - - File Directory Template Loading ✔
 - - Header File
 - Config File Output
