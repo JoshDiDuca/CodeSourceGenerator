@@ -27,13 +27,13 @@
 	end
 
 	func params_to_object
-		 returnString = "{";
+		 returnString = "";
 		 if !$1; $1 = ","; end;
 		 for parameter in $0.parameters
 			returnString = (returnString + (to_camel_case parameter.name) + ", ")
 		 end
 		 returnLength = (returnString | string.size) - 2;
-		 ret (returnString | string.slice 0 returnLength) + "}";
+		 ret "{" + (returnString | string.slice 0 returnLength) + "}";
 	end
 
 	func get_request_type
