@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicCode.SourceGenerator.Visitors", "DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj", "{34FCE0DA-3A33-4D27-BB93-64E65C6BAFD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI.Example", "WebUI.Example\WebUI.Example.csproj", "{5A12A42D-AEEB-452D-9740-43DD1B5C5DA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI.Example", "examples\WebUI.Example\WebUI.Example.csproj", "{5A12A42D-AEEB-452D-9740-43DD1B5C5DA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
