@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "outDir": "./wwwroot/",
+        "moduleResolution": "node",
+        "lib": [
+            "esnext",
+            "es6",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "types": [
+            "node"
+        ],
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "sourceMap": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "emitDecoratorMetadata": true,
+        "removeComments": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "skipDefaultLibCheck": true,
+        "strictNullChecks": false,
+        "strictFunctionTypes": false,
+        "baseUrl": "."
+    },
+    "include": [
+        "Typescript/**/*.ts"
+    ],
+    "exclude": [
+        "bin",
+        "node_modules"
+    ]
+}

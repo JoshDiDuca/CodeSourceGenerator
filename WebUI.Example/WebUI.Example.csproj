@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Typescript\Generated\Models\" />
+    <Folder Include="Typescript\Generated\Services\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Resource Include="codegen.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator\DynamicCode.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+﻿
+/*
+ * CHANGES WILL BE OVERRIDEN
+ * Auto generated for source object: {{ name }}
+ * Template: {{ template }}
+ */
+
+export class {{ name }} {
+	{{for property in properties}}
+	public {{ to_camel_case property.name }} : {{ property.type.typescript_name }};
+	{{end}}
+}

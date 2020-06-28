@@ -1,0 +1,76 @@
+﻿
+/*
+ * CHANGES WILL BE OVERRIDEN
+ * Auto generated for source object: {{ name }}
+ * Template: {{ template }}
+ */
+ 
+{{
+	func params_to_string
+		 returnString = "";
+		 for parameter in $0.parameters
+			returnString = (returnString + (to_camel_case parameter.name) + " : " + parameter.type.typescript_name + ", ")
+		 end
+		 returnLength = (returnString | string.size) - 2;
+		 ret (returnString | string.slice 0 returnLength);
+	end
+
+	func get_route
+		 returnString = "";
+		 for attribute in attributes
+			 if attribute.name == "Route";
+				returnString = attribute.value;
+			 end
+		 end
+		 controller = name | string.replace 'Controller' '';
+		 ret returnString | string.replace '[controller]' controller;
+	end
+
+	func params_to_object
+		 returnString = "{";
+		 if !$1; $1 = ","; end;
+		 for parameter in $0.parameters
+			returnString = (returnString + (to_camel_case parameter.name) + ", ")
+		 end
+		 returnLength = (returnString | string.size) - 2;
+		 ret (returnString | string.slice 0 returnLength) + "}";
+	end
+
+	func get_request_type
+		 returnString = "";
+		 for attribute in $0.attributes
+			case attribute.name
+			  when "HttpPost"
+				returnString = "Post"
+			  when "HttpGet"
+				returnString = "Get"
+			  when "HttpPut"
+				returnString = "Put"
+			  when "HttpDelete"
+				returnString = "Delete"
+			end
+		 end
+		 ret returnString;
+	end
+	
+	func get_service_name 
+		ret name | string.replace 'Controller' 'Service';
+	end
+}}
+
+{{for method in methods}}{{ requestType = (get_request_type method); if (requestType != "" && method.type.is_defined) }}import { {{method.type}} } from '../Models/{{method.type}}';{{ end }}
+{{for parameter in method.parameters}}{{ if (parameter.type.is_defined) }}import { {{parameter.type}} } from '../Models/{{parameter.type}}';
+{{end}}{{end}}{{end}}
+import { baseService } from '../../Base/baseService';
+
+export class {{ get_service_name }} extends baseService {
+	private controllerRoute = '{{ get_route }}';
+	{{for method in methods}}{{ requestType = (get_request_type method); if (requestType != "") }}
+	public {{ to_camel_case method.name }}({{ params_to_string method }}) : {{ method.type.typescript_name }} {
+		const parameters = {{ params_to_object method }};
+		const actionRoute = '{{ method.name }}';
+		const route = this.getRoute(this.controllerRoute, actionRoute);
+		return this.request{{ requestType }}<{{ method.type.typescript_name }}>(route, parameters);
+	}{{ end }}
+	{{end}}
+}

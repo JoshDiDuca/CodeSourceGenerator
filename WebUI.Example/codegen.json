@@ -1,0 +1,24 @@
+﻿{
+    "Settings": {
+    },
+    "Builders": [
+        {
+            "Input": {
+                "Template": "Typescript/Templates/typescriptService.scriban",
+                "InputMatcher": "WebUI.Example.Controllers"
+            },
+            "Output": {
+                "OutputPathTemplate": "Typescript/Generated/Services/{{ name | string.replace 'Controller' 'Service' }}.ts"
+            }
+        },
+        {
+            "Input": {
+                "Template": "Typescript/Templates/typescriptModel.scriban",
+                "InputMatcher": "WebUI.Example.Models"
+            },
+            "Output": {
+                "OutputPathTemplate": "Typescript/Generated/Models/{{ name }}.ts"
+            }
+        }
+    ]
+}
