@@ -18,6 +18,7 @@ This source generation example generates typescript services for the web ui's co
 
 [Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Services)
 
+Config:
 ```json
 {
     "Input": {
@@ -41,6 +42,7 @@ This source generation example generates typescript models for the web ui.
 
 [Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Models)
 
+Config:
 ```json
 {
     "Input": {
@@ -67,6 +69,7 @@ This source generation example generates the documentation for this library.
 
 [Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/ConsoleApp.Example/Output/Documentation)
 
+Config:
 ```json
 {
   "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
