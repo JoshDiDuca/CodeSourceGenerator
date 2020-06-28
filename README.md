@@ -2,7 +2,7 @@
 
 Dynamic code source generator is a visual studio analyzer which allows you to generate source files pre compilation with access to objects within the source code. The aim of this project is so it can be used for generating any type of source file easily from a template, whether it be typescript, html, javascript or even documentation.
 
-*This project is built using .NET 5 preview since source generators are currently still a preview feature.*
+*This project is built using .NET 5 preview and since source generators are currently still a preview feature. You will need the latest version of preview .NET 5, the latest preview of Visual Studio with the 'C# and Visual Basic Roslyn compilers' individual component installed in order to run this solution.*
 
 ## Features
 
