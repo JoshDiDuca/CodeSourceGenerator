@@ -16,16 +16,18 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 ## To Do
 
 - Scriban integration ✔
-- Config File ✔
+- Config File Input
 - - Basic Code Finding ✔
-- - Output Name Template ✔
-- - Multiple Output Templates ✔
 - - Turn off adding source to compilation ✔
 - - Advanced Code Searching (attributes or a better matcher) 
 - - Http Template Loading
 - - File Directory Template Loading
 - - Pre Built Templates
+- - Better template error handling
 - - Header File
+- Config File Output
+- - Output Name Template ✔
+- - Multiple Output Templates ✔
 - File Generation
 - - Basic File ✔
 - - Multiple templates in file ✔
