@@ -8,10 +8,12 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
     public class RoslynEnumMetadata : IEnumMetadata
     {
         private readonly INamedTypeSymbol _symbol;
+        private readonly IFileMetadata _file;
 
-        public RoslynEnumMetadata(INamedTypeSymbol symbol)
+        public RoslynEnumMetadata(INamedTypeSymbol symbol, IFileMetadata file = null)
         {
             _symbol = symbol;
+            _file = file;
         }
 
         public string DocComment => _symbol.GetDocumentationCommentXml();
@@ -29,9 +31,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public IClassMetadata ContainingClass => RoslynClassMetadata.FromNamedTypeSymbol(_symbol.ContainingType);
         public IEnumerable<IEnumValueMetadata> Values => RoslynEnumValueMetadata.FromFieldSymbols(_symbol.GetMembers().OfType<IFieldSymbol>());
         
-        internal static IEnumerable<IEnumMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols)
+        internal static IEnumerable<IEnumMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols, RoslynFileMetadata file = null)
         {
-            return symbols.Select(s => new RoslynEnumMetadata(s));
+            return symbols.Select(s => new RoslynEnumMetadata(s, file));
         }
     }
 }

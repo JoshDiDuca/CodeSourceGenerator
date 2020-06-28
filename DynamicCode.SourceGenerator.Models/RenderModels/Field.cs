@@ -39,6 +39,21 @@ namespace DynamicCode.SourceGenerator.Models.RenderModels
         public abstract Type Type { get; }
 
         /// <summary>
+        /// Determines if the field is public.
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the field is private.
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the field is protected.
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// Converts the current instance to string.
         /// </summary>
         public static implicit operator string (Field instance)

@@ -9,19 +9,19 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 {
     public class RoslynMetadataProvider : IMetadataProvider
     {
-        private readonly Workspace workspace;
+        private readonly Workspace _workspace;
 
-        public RoslynMetadataProvider()
+        public RoslynMetadataProvider(Workspace workspace)
         {
-
+            _workspace = workspace;
         }
 
-        public IFileMetadata GetFile(string path, CodeGenerationConfig settings, Action<string[]> requestRender)
+        public IFileMetadata GetFile(string path)
         {
-            DocumentId document = workspace.CurrentSolution.GetDocumentIdsWithFilePath(path).FirstOrDefault();
+            DocumentId document = _workspace.CurrentSolution.GetDocumentIdsWithFilePath(path).FirstOrDefault();
             if (document != null)
             {
-                return new RoslynFileMetadata(workspace.CurrentSolution.GetDocument(document), settings, requestRender);
+                return new RoslynFileMetadata(_workspace.CurrentSolution.GetDocument(document));
             }
 
             return null;

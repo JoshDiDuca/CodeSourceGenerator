@@ -25,6 +25,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public bool IsGeneric => (symbol as INamedTypeSymbol)?.TypeParameters.Any() ?? false;
         public bool IsDefined => symbol.Locations.Any(l => l.IsInSource);
         public bool IsValueTuple => symbol.Name == "" && symbol.BaseType?.Name == "ValueType" && symbol.BaseType.ContainingNamespace.Name == "System";
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
 
         public string Namespace => symbol.GetNamespace();
         public ITypeMetadata Type => this;
@@ -153,6 +156,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         public bool IsEnumerable => false;
         public bool IsGeneric => false;
         public bool IsNullable => false;
+        public bool IsPublic => false;
+        public bool IsPrivate => false;
+        public bool IsProtected => false;
         public bool IsTask => true;
         public bool IsDefined => false;
         public bool IsValueTuple => false;

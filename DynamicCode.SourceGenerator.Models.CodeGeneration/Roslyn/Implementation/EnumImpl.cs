@@ -22,6 +22,10 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
         public override string FullName => _metadata.FullName;
         public override string Namespace => _metadata.Namespace;
 
+        public override bool IsPublic => _metadata.IsPublic;
+        public override bool IsPrivate => _metadata.IsPrivate;
+        public override bool IsProtected => _metadata.IsProtected;
+
         private Type _type;
         protected override Type Type => _type ??= TypeImpl.FromMetadata(_metadata.Type, Parent);
 

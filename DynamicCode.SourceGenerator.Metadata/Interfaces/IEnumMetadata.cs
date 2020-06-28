@@ -10,5 +10,8 @@ namespace DynamicCode.SourceGenerator.Metadata.Interfaces
         IEnumerable<IAttributeMetadata> Attributes { get; }
         IClassMetadata ContainingClass { get; }
         IEnumerable<IEnumValueMetadata> Values { get; }
+        bool IsPublic { get; }
+        bool IsPrivate { get; }
+        bool IsProtected { get; }
     }
 }

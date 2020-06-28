@@ -24,5 +24,8 @@ namespace DynamicCode.SourceGenerator.Metadata.Interfaces
         IEnumerable<IClassMetadata> NestedClasses { get; }
         IEnumerable<IEnumMetadata> NestedEnums { get; }
         IEnumerable<IInterfaceMetadata> NestedInterfaces { get; }
+        bool IsPublic { get; }
+        bool IsPrivate { get; }
+        bool IsProtected { get; }
     }
 }

@@ -22,6 +22,9 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
         public override string FullName => _metadata.FullName;
         public override bool IsAbstract => _metadata.IsAbstract;
         public override bool IsGeneric => _metadata.IsGeneric;
+        public override bool IsPublic => _metadata.IsPublic;
+        public override bool IsPrivate => _metadata.IsPrivate;
+        public override bool IsProtected => _metadata.IsProtected;
 
         private IEnumerable<Attribute> _attributes;
         public override IEnumerable<Attribute> Attributes => _attributes ??= AttributeImpl.FromMetadata(_metadata.Attributes, this);

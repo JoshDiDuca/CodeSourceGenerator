@@ -6,6 +6,6 @@ namespace DynamicCode.SourceGenerator.Metadata.Providers
 {
     public interface IMetadataProvider
     {
-        IFileMetadata GetFile(string path, CodeGenerationConfig settings, Action<string[]> requestRender);
+        IFileMetadata GetFile(string path);
     }
 }

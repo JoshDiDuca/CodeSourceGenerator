@@ -32,7 +32,21 @@ namespace DynamicCode.SourceGenerator.Models.RenderModels
         /// Determines if the method is generic.
         /// </summary>
         public abstract bool IsGeneric { get; }
+
+        /// <summary>
+        /// Determines if the class is public.
         /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the class is private.
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the class is protected.
+        /// </summary>
+        public abstract bool IsProtected { get; }
 
         /// <summary>
         /// The name of the method.

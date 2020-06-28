@@ -7,31 +7,33 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 {
     public class RoslynDelegateMetadata : IDelegateMetadata
     {
-        private readonly INamedTypeSymbol symbol;
-        private readonly IMethodSymbol methodSymbol;
+        private readonly INamedTypeSymbol _symbol;
+        private readonly IMethodSymbol _methodSymbol;
+        private readonly IFileMetadata _file;
 
-        public RoslynDelegateMetadata(INamedTypeSymbol symbol)
+        public RoslynDelegateMetadata(INamedTypeSymbol symbol, IFileMetadata file = null)
         {
-            this.symbol = symbol;
-            this.methodSymbol = symbol.DelegateInvokeMethod;
+            _symbol = symbol;
+            _methodSymbol = symbol.DelegateInvokeMethod;
+            _file = file;
         }
 
-        public string DocComment => symbol.GetDocumentationCommentXml();
-        public string Name => symbol.Name;
-        public string FullName => symbol.GetFullName();
-        public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(symbol.GetAttributes());
-        public ITypeMetadata Type => methodSymbol == null ? null : RoslynTypeMetadata.FromTypeSymbol(methodSymbol.ReturnType);
-        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
-        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
-        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+        public string DocComment => _symbol.GetDocumentationCommentXml();
+        public string Name => _symbol.Name;
+        public string FullName => _symbol.GetFullName();
+        public IEnumerable<IAttributeMetadata> Attributes => RoslynAttributeMetadata.FromAttributeData(_symbol.GetAttributes());
+        public ITypeMetadata Type => _methodSymbol == null ? null : RoslynTypeMetadata.FromTypeSymbol(_methodSymbol.ReturnType);
+        public bool IsPublic => _symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => _symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => _symbol.DeclaredAccessibility == Accessibility.Protected;
         public bool IsAbstract => false;
-        public bool IsGeneric => symbol.TypeParameters.Any();
-        public IEnumerable<ITypeParameterMetadata> TypeParameters => RoslynTypeParameterMetadata.FromTypeParameterSymbols(symbol.TypeParameters);
-        public IEnumerable<IParameterMetadata> Parameters => methodSymbol == null ? new IParameterMetadata[0] : RoslynParameterMetadata.FromParameterSymbols(methodSymbol.Parameters);
+        public bool IsGeneric => _symbol.TypeParameters.Any();
+        public IEnumerable<ITypeParameterMetadata> TypeParameters => RoslynTypeParameterMetadata.FromTypeParameterSymbols(_symbol.TypeParameters);
+        public IEnumerable<IParameterMetadata> Parameters => _methodSymbol == null ? new IParameterMetadata[0] : RoslynParameterMetadata.FromParameterSymbols(_methodSymbol.Parameters);
 
-        public static IEnumerable<IDelegateMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols)
+        public static IEnumerable<IDelegateMetadata> FromNamedTypeSymbols(IEnumerable<INamedTypeSymbol> symbols, RoslynFileMetadata file = null)
         {
-            return symbols.Select(s => new RoslynDelegateMetadata(s));
+            return symbols.Select(s => new RoslynDelegateMetadata(s, file));
         }
     }
 }

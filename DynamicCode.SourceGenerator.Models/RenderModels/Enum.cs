@@ -43,6 +43,21 @@ namespace DynamicCode.SourceGenerator.Models.RenderModels
         public abstract string Namespace { get; }
 
         /// <summary>
+        /// Determines if the enum is public.
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the enum is private.
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the enum is protected.
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// The parent context of the enum.
         /// </summary>
         public abstract Object Parent { get; }

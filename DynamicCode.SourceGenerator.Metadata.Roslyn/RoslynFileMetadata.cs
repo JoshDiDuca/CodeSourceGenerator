@@ -10,26 +10,21 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 {
     public class RoslynFileMetadata : IFileMetadata
     {
-        private readonly Action<string[]> _requestRender;
         private Document _document;
         private SyntaxNode _root;
         private SemanticModel _semanticModel;
 
-        public RoslynFileMetadata(Document document, CodeGenerationConfig settings, Action<string[]> requestRender)
+        public RoslynFileMetadata(Document document)
         {
-            _requestRender = requestRender;
-
             LoadDocument(document);
-            Settings = settings;
         }
 
-        public CodeGenerationConfig Settings { get; }
         public string Name => _document.Name;
         public string FullName => _document.FilePath;
 
         public IEnumerable<IClassMetadata> Classes => RoslynClassMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<ClassDeclarationSyntax>(), this);
-        public IEnumerable<IDelegateMetadata> Delegates => RoslynDelegateMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<DelegateDeclarationSyntax>());
-        public IEnumerable<IEnumMetadata> Enums => RoslynEnumMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<EnumDeclarationSyntax>());
+        public IEnumerable<IDelegateMetadata> Delegates => RoslynDelegateMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<DelegateDeclarationSyntax>(), this);
+        public IEnumerable<IEnumMetadata> Enums => RoslynEnumMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<EnumDeclarationSyntax>(), this);
         public IEnumerable<IInterfaceMetadata> Interfaces => RoslynInterfaceMetadata.FromNamedTypeSymbols(GetNamespaceChildNodes<InterfaceDeclarationSyntax>(), this);
 
         private void LoadDocument(Document document)
