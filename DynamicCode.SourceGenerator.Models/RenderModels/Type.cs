@@ -91,6 +91,21 @@ namespace DynamicCode.SourceGenerator.Models.RenderModels
         public abstract bool IsNullable { get; }
 
         /// <summary>
+        /// Determines if the interface is public.
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the interface is private.
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the interface is protected.
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// Determines if the type is primitive.
         /// </summary>
         public abstract bool IsPrimitive { get; }

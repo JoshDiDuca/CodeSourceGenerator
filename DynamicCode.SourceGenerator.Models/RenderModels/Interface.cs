@@ -43,6 +43,21 @@ namespace DynamicCode.SourceGenerator.Models.RenderModels
         public abstract bool IsGeneric { get; }
 
         /// <summary>
+        /// Determines if the interface is public.
+        /// </summary>
+        public abstract bool IsPublic { get; }
+
+        /// <summary>
+        /// Determines if the interface is private.
+        /// </summary>
+        public abstract bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the interface is protected.
+        /// </summary>
+        public abstract bool IsProtected { get; }
+
+        /// <summary>
         /// All methods defined in the interface.
         /// </summary>
         public abstract IEnumerable<Method> Methods { get; }

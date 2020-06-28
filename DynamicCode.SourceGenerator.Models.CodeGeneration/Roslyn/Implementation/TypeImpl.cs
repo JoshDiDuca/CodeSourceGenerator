@@ -28,6 +28,9 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
         public override string FullName => _metadata.FullName;
         public override string Namespace => _metadata.Namespace;
         public override bool IsGeneric => _metadata.IsGeneric;
+        public override bool IsPublic => _metadata.IsPublic;
+        public override bool IsPrivate => _metadata.IsPrivate;
+        public override bool IsProtected => _metadata.IsProtected;
         public override bool IsEnum => _metadata.IsEnum;
         public override bool IsEnumerable => _metadata.IsEnumerable;
         public override bool IsNullable => _metadata.IsNullable;

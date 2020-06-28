@@ -7,6 +7,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Interfaces
         string DocComment { get; }
         string Namespace { get; }
         bool IsGeneric { get; }
+        bool IsPublic { get; }
+        bool IsPrivate { get; }
+        bool IsProtected { get; }
         ITypeMetadata Type { get; }
         IEnumerable<IAttributeMetadata> Attributes { get; }
         IClassMetadata ContainingClass { get; }
