@@ -41,7 +41,7 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         private IEnumerable<INamedTypeSymbol> GetNamespaceChildNodes<T>() where T : SyntaxNode
         {
-            var symbols = _root.ChildNodes().OfType<T>().Concat(
+            IEnumerable<INamedTypeSymbol> symbols = _root.ChildNodes().OfType<T>().Concat(
                 _root.ChildNodes().OfType<NamespaceDeclarationSyntax>().SelectMany(n => n.ChildNodes().OfType<T>()))
                 .Select(c => _semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol);
             return symbols;

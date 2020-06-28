@@ -18,7 +18,7 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public IFileMetadata GetFile(string path, CodeGenerationConfig settings, Action<string[]> requestRender)
         {
-            var document = workspace.CurrentSolution.GetDocumentIdsWithFilePath(path).FirstOrDefault();
+            DocumentId document = workspace.CurrentSolution.GetDocumentIdsWithFilePath(path).FirstOrDefault();
             if (document != null)
             {
                 return new RoslynFileMetadata(workspace.CurrentSolution.GetDocument(document), settings, requestRender);

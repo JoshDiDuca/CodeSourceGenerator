@@ -28,7 +28,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
 
             if (value.StartsWith("\"") && value.EndsWith("\""))
             {
-                var trimmed = value.Substring(1, value.Length - 2);
+                string trimmed = value.Substring(1, value.Length - 2);
 
                 if (trimmed.Replace("\\\"", string.Empty).Contains("\"") == false)
                     return trimmed;

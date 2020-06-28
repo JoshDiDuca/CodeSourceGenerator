@@ -18,9 +18,9 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
             if (symbol is IDynamicTypeSymbol)
                 return symbol.Name;
 
-            var name = (symbol is INamedTypeSymbol type) ? GetFullTypeName(type) : symbol.Name;
+            string name = (symbol is INamedTypeSymbol type) ? GetFullTypeName(type) : symbol.Name;
 
-            var namespaceSymbol = symbol.ContainingSymbol as INamespaceSymbol;
+            INamespaceSymbol namespaceSymbol = symbol.ContainingSymbol as INamespaceSymbol;
             if (namespaceSymbol?.IsGlobalNamespace == true)
             {
                 return name;
@@ -41,8 +41,8 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
                 return null;
             }
 
-            var restOfResult = GetNamespace(symbol.ContainingNamespace);
-            var result = symbol.ContainingNamespace.Name;
+            string restOfResult = GetNamespace(symbol.ContainingNamespace);
+            string result = symbol.ContainingNamespace.Name;
 
             if (restOfResult != null)
                 result = restOfResult + '.' + result;
@@ -52,7 +52,7 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         public static string GetFullTypeName(this INamedTypeSymbol type)
         {
-            var result = type.Name;
+            string result = type.Name;
 
             if (type.Name == "Nullable" && type.ContainingNamespace.Name == "System")
             {

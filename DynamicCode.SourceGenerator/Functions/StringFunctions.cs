@@ -34,7 +34,7 @@ namespace DynamicCode.SourceGenerator.Functions
 
             StringBuilder builder = new StringBuilder();
 
-            for (var i = 0; i < source.Length; i++)
+            for (int i = 0; i < source.Length; i++)
             {
                 if (char.IsLower(source[i])) // if current char is already lowercase
                 {

@@ -14,8 +14,8 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 
         private RoslynAttributeMetadata(AttributeData a)
         {
-            var declaration = a.ToString();
-            var index = declaration.IndexOf("(", StringComparison.Ordinal);
+            string declaration = a.ToString();
+            int index = declaration.IndexOf("(", StringComparison.Ordinal);
 
             this.symbol = a.AttributeClass;
             this.name = symbol.Name;

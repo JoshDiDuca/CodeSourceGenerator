@@ -62,7 +62,7 @@ namespace DynamicCode.SourceGenerator
 
                 foreach (INamedItem @object in _renderEngine.GetMatchedObjects(context, _visitor, builder))
                 {
-                    var renderResult = _renderEngine.RenderMatch(@object, builder);
+                    RenderResultModel renderResult = _renderEngine.RenderMatch(@object, builder);
 
                     if (renderResult != null)
                     {

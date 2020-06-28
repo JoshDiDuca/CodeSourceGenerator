@@ -12,16 +12,16 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
             if (string.IsNullOrEmpty(s)) return s;
             if (char.IsUpper(s[0]) == false) return s;
 
-            var chars = s.ToCharArray();
+            char[] chars = s.ToCharArray();
 
-            for (var i = 0; i < chars.Length; i++)
+            for (int i = 0; i < chars.Length; i++)
             {
                 if (i == 1 && char.IsUpper(chars[i]) == false)
                 {
                     break;
                 }
 
-                var hasNext = (i + 1 < chars.Length);
+                bool hasNext = (i + 1 < chars.Length);
                 if (i > 0 && hasNext && char.IsUpper(chars[i + 1]) == false)
                 {
                     break;
@@ -40,7 +40,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
             if (metadata.IsEnumerable)
             {
-                var typeArguments = metadata.TypeArguments.ToList();
+                List<ITypeMetadata> typeArguments = metadata.TypeArguments.ToList();
 
                 if (typeArguments.Count == 0)
                 {
@@ -50,7 +50,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
                     }
                     else
                     {
-                        var genericInterface = metadata.Interfaces.FirstOrDefault(i => i.IsGeneric);
+                        IInterfaceMetadata genericInterface = metadata.Interfaces.FirstOrDefault(i => i.IsGeneric);
                         if (genericInterface != null)
                             typeArguments = genericInterface.TypeArguments.ToList();
                     }
@@ -66,8 +66,8 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
                 if (typeArguments.Count == 2)
                 {
-                    var key = GetTypeScriptName(typeArguments[0]);
-                    var value = GetTypeScriptName(typeArguments[1]);
+                    string key = GetTypeScriptName(typeArguments[0]);
+                    string value = GetTypeScriptName(typeArguments[1]);
 
                     return string.Concat("{ [key: ", key, "]: ", value, "; }");
                 }
@@ -77,7 +77,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
             if (metadata.IsValueTuple)
             {
-                var types = string.Join(", ", metadata.TupleElements.Select(p => $"{p.Name}: {GetTypeScriptName(p.Type)}"));
+                string types = string.Join(", ", metadata.TupleElements.Select(p => $"{p.Name}: {GetTypeScriptName(p.Type)}"));
                 return $"{{ {types} }}";
             }
 
@@ -91,8 +91,8 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
         public static string GetOriginalName(ITypeMetadata metadata)
         {
-            var name = metadata.Name;
-            var fullName = metadata.IsNullable ? metadata.FullName.TrimEnd('?') : metadata.FullName;
+            string name = metadata.Name;
+            string fullName = metadata.IsNullable ? metadata.FullName.TrimEnd('?') : metadata.FullName;
 
             if (primitiveTypes.ContainsKey(fullName))
                 name = primitiveTypes[fullName] + (metadata.IsNullable ? "?" : string.Empty);
@@ -102,7 +102,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
         private static string ExtractTypeScriptName(ITypeMetadata metadata)
         {
-            var fullName = metadata.IsNullable ? metadata.FullName.TrimEnd('?') : metadata.FullName;
+            string fullName = metadata.IsNullable ? metadata.FullName.TrimEnd('?') : metadata.FullName;
 
             switch (fullName)
             {
@@ -140,7 +140,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
 
         public static bool IsPrimitive(ITypeMetadata metadata)
         {
-            var fullName = metadata.FullName;
+            string fullName = metadata.FullName;
 
             if (metadata.IsNullable)
             {
@@ -148,7 +148,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration
             }
             else if (metadata.IsEnumerable)
             {
-                var innerType = metadata.TypeArguments.FirstOrDefault();
+                ITypeMetadata innerType = metadata.TypeArguments.FirstOrDefault();
                 if (innerType != null)
                 {
                     fullName = innerType.IsNullable ? innerType.FullName.TrimEnd('?') : innerType.FullName;

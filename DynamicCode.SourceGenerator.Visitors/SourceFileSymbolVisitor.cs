@@ -42,7 +42,7 @@ namespace DynamicCode.SourceGenerator.Visitors
                 if(!Objects.Any((o) => o.FullName == namedItem.FullName))
                     Objects.Add(namedItem);
             }
-            foreach (var childSymbol in symbol.GetTypeMembers())
+            foreach (INamedTypeSymbol childSymbol in symbol.GetTypeMembers())
             {
                 base.Visit(childSymbol);
             }

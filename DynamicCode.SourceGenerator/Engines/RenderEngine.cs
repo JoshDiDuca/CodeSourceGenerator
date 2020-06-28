@@ -1,4 +1,6 @@
-﻿using DynamicCode.SourceGenerator.Functions;
+﻿using DynamicCode.SourceGenerator.Common;
+using DynamicCode.SourceGenerator.Functions;
+using DynamicCode.SourceGenerator.Helpers;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
 using DynamicCode.SourceGenerator.Models.Config;
 using DynamicCode.SourceGenerator.Models.Generations;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DynamicCode.SourceGenerator.Engines
 {
@@ -30,16 +33,16 @@ namespace DynamicCode.SourceGenerator.Engines
 
             if (!string.IsNullOrEmpty(builder.Input.InputMatcher))
             {
-                var matchedObjects = visitor.QueryObjects(builder.Input.InputMatcher, builder.Input.Assemblies);
+                List<INamedItem> matchedObjects = visitor.QueryObjects(builder.Input.InputMatcher, builder.Input.Assemblies);
                 if (matchedObjects != null)
                     queryObjects.AddRange(matchedObjects);
             }
 
             if (builder.Input.InputMatchers != null && builder.Input.InputMatchers.Any())
             {
-                foreach (var matcher in builder.Input.InputMatchers)
+                foreach (string matcher in builder.Input.InputMatchers)
                 {
-                    var matchedObjects = visitor.QueryObjects(matcher, builder.Input.Assemblies);
+                    List<INamedItem> matchedObjects = visitor.QueryObjects(matcher, builder.Input.Assemblies);
                     if (matchedObjects != null)
                         queryObjects.AddRange(matchedObjects);
                 }
@@ -47,12 +50,12 @@ namespace DynamicCode.SourceGenerator.Engines
 
             if (builder.Input.InputIgnoreMatchers != null && builder.Input.InputIgnoreMatchers.Any())
             {
-                foreach (var matcher in builder.Input.InputIgnoreMatchers)
+                foreach (string matcher in builder.Input.InputIgnoreMatchers)
                 {
-                    var matchedObjects = visitor.QueryObjects(matcher, builder.Input.Assemblies);
+                    List<INamedItem> matchedObjects = visitor.QueryObjects(matcher, builder.Input.Assemblies);
                     if (matchedObjects != null)
                     {
-                        foreach (var match in matchedObjects)
+                        foreach (INamedItem match in matchedObjects)
                         {
                             queryObjects = queryObjects.Where(o => o.FullName != match.FullName).ToList();
                         }
@@ -65,41 +68,40 @@ namespace DynamicCode.SourceGenerator.Engines
 
         public RenderResultModel RenderMatch(INamedItem @object, CodeGenerationConfigBuilder builder)
         {
-            var scriptObject = new ScriptObject();
+            ScriptObject scriptObject = new ScriptObject();
             scriptObject.Import(typeof(StringFunctions));
 
-            var renderModel = RenderModel.FromNamedItem(builder, @object);
+            Models.RenderModels.Object renderModel = RenderModel.FromNamedItem(builder, @object);
             scriptObject.Import(renderModel);
 
-            var templateContext = new TemplateContext();
+            TemplateContext templateContext = new TemplateContext();
             templateContext.PushGlobal(scriptObject);
 
-            var template = Template.Parse(File.ReadAllText(builder.Input.Template));
+            string templateContent = TemplateHelper.FindTemplateFile(builder.Input.Template);
 
-            var fileNameTemplates = new List<Template>();
-
-            if (builder.Output.OutputPathTemplates != null && builder.Output.OutputPathTemplates.Any())
+            if (!string.IsNullOrEmpty(templateContent))
             {
-                fileNameTemplates.AddRange(builder.Output.OutputPathTemplates.Select(t => Template.Parse(t)));
-            }
+                Template template = Template.Parse(templateContent);
+
+                List<Template> fileNameTemplates = new List<Template>();
+                if (builder.Output.OutputPathTemplates != null && builder.Output.OutputPathTemplates.Any())
+                    fileNameTemplates.AddRange(builder.Output.OutputPathTemplates.Select(t => Template.Parse(t)));
+                else
+                    fileNameTemplates.Add(Template.Parse(builder.Output.OutputPathTemplate));
+
+                string result = template.Render(templateContext);
+
+                List<string> outputFilePaths = new List<string>(fileNameTemplates.Select(r => r.Render(renderModel)));
+
+                RenderResultModel renderResult = new RenderResultModel { Result = result, BuilderConfig = builder, OutputPaths = outputFilePaths };
+
+                return renderResult;
+            } 
             else
             {
-                fileNameTemplates.Add(Template.Parse(builder.Output.OutputPathTemplate));
+                Logger.LogError("Error finding template", "Could not find the following template: "+ builder.Input.Template);
+                return null;
             }
-
-
-            var result = template.Render(templateContext);
-
-            var fileNames = new List<string>();
-
-            foreach (var fileNameTemplate in fileNameTemplates)
-            {
-                fileNames.Add(fileNameTemplate.Render(renderModel));
-            }
-
-            var renderResult = new RenderResultModel { Result = result, BuilderConfig = builder, OutputPaths = fileNames };
-
-            return renderResult;
         }
     }
 }

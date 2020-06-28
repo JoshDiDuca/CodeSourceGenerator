@@ -36,7 +36,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
         {
             if (string.IsNullOrEmpty(value)) return value;
 
-            var lines = value.Split('\r', '\n');
+            string[] lines = value.Split('\r', '\n');
             return string.Join(" ", lines.Select(l => l.Trim())).Trim();
         }
 
@@ -46,7 +46,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Implementation
             {
                 if (string.IsNullOrEmpty(xml)) return null;
 
-                var root = XDocument.Parse(xml).Root;
+                XElement root = XDocument.Parse(xml).Root;
                 return root != null ? new DocCommentImpl(root, parent) : null;
             }
             catch

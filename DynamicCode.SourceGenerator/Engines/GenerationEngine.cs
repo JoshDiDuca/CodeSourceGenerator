@@ -14,18 +14,18 @@ namespace DynamicCode.SourceGenerator.Engines
     {
         public int CurrentGeneration { get; protected set; } = 0;
 
-        private Dictionary<string, List<GenerationModel<RenderResultModel>>> _generations = new Dictionary<string, List<GenerationModel<RenderResultModel>>>();
+        private readonly Dictionary<string, List<GenerationModel<RenderResultModel>>> _generations = new Dictionary<string, List<GenerationModel<RenderResultModel>>>();
 
         public List<KeyValuePair<string, RenderResultModel>> CurrentGenerations => GetGeneration(CurrentGeneration);
         public List<KeyValuePair<string, RenderResultModel>> PreviousGenerations => GetGeneration(CurrentGeneration - 1);
 
         public void AddToCurrentGeneration(RenderResultModel renderResult)
         {
-            var newGeneration = new GenerationModel<RenderResultModel>(CurrentGeneration, renderResult);
+            GenerationModel<RenderResultModel> newGeneration = new GenerationModel<RenderResultModel>(CurrentGeneration, renderResult);
 
-            foreach (var fileName in renderResult.OutputPaths)
+            foreach (string fileName in renderResult.OutputPaths)
             {
-                var previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
+                List<GenerationModel<RenderResultModel>> previousGens = _generations.ContainsKey(fileName) ? _generations[fileName] : null;
 
                 if (previousGens is null || !previousGens.Any())
                 {
@@ -33,7 +33,7 @@ namespace DynamicCode.SourceGenerator.Engines
                 }
                 else
                 {
-                    var currentGen = previousGens.FirstOrDefault(g => g.Generation == CurrentGeneration);
+                    GenerationModel<RenderResultModel> currentGen = previousGens.FirstOrDefault(g => g.Generation == CurrentGeneration);
                     if (currentGen == null)
                         previousGens.Add(newGeneration);
                     else
@@ -49,7 +49,7 @@ namespace DynamicCode.SourceGenerator.Engines
 
         public void PublishGeneration(SourceGeneratorContext context)
         {
-            foreach (var pair in PreviousGenerations)
+            foreach (KeyValuePair<string, RenderResultModel> pair in PreviousGenerations)
             {
                 if (File.Exists(pair.Key))
                 {
@@ -57,11 +57,11 @@ namespace DynamicCode.SourceGenerator.Engines
                 }
             }
 
-            foreach (var pair in CurrentGenerations)
+            foreach (KeyValuePair<string, RenderResultModel> pair in CurrentGenerations)
             {
                 try
                 {
-                    var source = SourceText.From(pair.Value?.Result, Encoding.UTF8);
+                    SourceText source = SourceText.From(pair.Value?.Result, Encoding.UTF8);
                     if (!string.IsNullOrEmpty(pair.Key))
                     {
                         if (pair.Value.BuilderConfig.Output.AddToCompilation)

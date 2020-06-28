@@ -11,7 +11,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
 
         protected override IEnumerable<string> GetAttributeFilter(Class item)
         {
-            foreach (var attribute in item.Attributes)
+            foreach (Attribute attribute in item.Attributes)
             {
                 yield return attribute.Name;
                 yield return attribute.FullName;
@@ -26,7 +26,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
                 yield return item.BaseClass.FullName;
             }
 
-            foreach (var implementedInterface in item.Interfaces)
+            foreach (Interface implementedInterface in item.Interfaces)
             {
                 yield return implementedInterface.Name;
                 yield return implementedInterface.FullName;

@@ -13,8 +13,8 @@ namespace DynamicCode.SourceGenerator
     {
         public static CodeGenerationConfig GetConfig(SourceFileSymbolVisitor visitor, SourceGeneratorContext context)
         {
-            var file = File.ReadAllText("codegen.json");
-            var config = JSON.Parse<CodeGenerationConfig>(file);
+            string file = File.ReadAllText("codegen.json");
+            CodeGenerationConfig config = JSON.Parse<CodeGenerationConfig>(file);
             if(config != null)
             {
                 

@@ -11,7 +11,7 @@ namespace DynamicCode.SourceGenerator.Models.CodeGeneration.Collections
 
         protected override IEnumerable<string> GetAttributeFilter(Enum item)
         {
-            foreach (var attribute in item.Attributes)
+            foreach (Attribute attribute in item.Attributes)
             {
                 yield return attribute.Name;
                 yield return attribute.FullName;

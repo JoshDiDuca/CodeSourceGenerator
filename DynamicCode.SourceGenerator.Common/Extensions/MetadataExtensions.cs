@@ -14,8 +14,8 @@ namespace DynamicCode.SourceGenerator.Common.Extensions
                 return string.Empty;
             }
 
-            var sb = new StringBuilder(s.MetadataName);
-            var last = s;
+            StringBuilder sb = new StringBuilder(s.MetadataName);
+            ISymbol last = s;
 
             s = s.ContainingSymbol;
 
@@ -40,8 +40,7 @@ namespace DynamicCode.SourceGenerator.Common.Extensions
 
         private static bool IsRootNamespace(ISymbol symbol)
         {
-            INamespaceSymbol s = null;
-            return ((s = symbol as INamespaceSymbol) != null) && s.IsGlobalNamespace;
+            return (symbol is INamespaceSymbol s) && s.IsGlobalNamespace;
         }
     }
 }

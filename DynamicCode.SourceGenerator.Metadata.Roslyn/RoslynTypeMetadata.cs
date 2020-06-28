@@ -52,11 +52,11 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
                     {
                         if (n.Name == "" && n.BaseType?.Name == "ValueType" && n.BaseType.ContainingNamespace.Name == "System")
                         {
-                            var property = n.GetType().GetProperty(nameof(TupleElements));
+                            System.Reflection.PropertyInfo property = n.GetType().GetProperty(nameof(TupleElements));
                             if (property != null)
                             {
-                                var value = property.GetValue(symbol);
-                                var tupleElements = value as IEnumerable<IFieldSymbol>;
+                                object value = property.GetValue(symbol);
+                                IEnumerable<IFieldSymbol> tupleElements = value as IEnumerable<IFieldSymbol>;
 
                                 return RoslynFieldMetadata.FromFieldSymbols(tupleElements);
                             }
@@ -106,23 +106,23 @@ namespace DynamicCode.SourceGenerator.Metadata.Roslyn
         {
             if (symbol.Name == "Nullable" && symbol.ContainingNamespace.Name == "System")
             {
-                var type = symbol as INamedTypeSymbol;
-                var argument = type?.TypeArguments.FirstOrDefault();
+                INamedTypeSymbol type = symbol as INamedTypeSymbol;
+                ITypeSymbol argument = type?.TypeArguments.FirstOrDefault();
 
                 if (argument != null)
                     return new RoslynTypeMetadata(argument, true, false);
             }
             else if (symbol.Name == "Task" && symbol.ContainingNamespace.GetFullName() == "System.Threading.Tasks")
             {
-                var type = symbol as INamedTypeSymbol;
-                var argument = type?.TypeArguments.FirstOrDefault();
+                INamedTypeSymbol type = symbol as INamedTypeSymbol;
+                ITypeSymbol argument = type?.TypeArguments.FirstOrDefault();
 
                 if (argument != null)
                 {
                     if (argument.Name == "Nullable" && argument.ContainingNamespace.Name == "System")
                     {
                         type = argument as INamedTypeSymbol;
-                        var innerArgument = type?.TypeArguments.FirstOrDefault();
+                        ITypeSymbol innerArgument = type?.TypeArguments.FirstOrDefault();
 
                         if (innerArgument != null)
                             return new RoslynTypeMetadata(innerArgument, true, true);

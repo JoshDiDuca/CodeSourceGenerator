@@ -24,8 +24,8 @@ namespace DynamicCode.SourceGenerator.Common
 
         private static Stream GenerateStreamFromString(string s)
         {
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
             writer.Write(s);
             writer.Flush();
             stream.Position = 0;
