@@ -17,7 +17,7 @@ namespace DynamicCode.SourceGenerator.Engines
 {
     public class RenderEngine
     {
-        public List<INamedItem> GetMatchedObjects(SourceFileSymbolVisitor visitor, SourceGeneratorContext context, CodeGenerationConfigBuilder builder)
+        public List<INamedItem> GetMatchedObjects(SourceGeneratorContext context, SourceFileSymbolVisitor visitor, CodeGenerationConfigBuilder builder)
         {
             visitor.Visit(context.Compilation.GlobalNamespace);
 

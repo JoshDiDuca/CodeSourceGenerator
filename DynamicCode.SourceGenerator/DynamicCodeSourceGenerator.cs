@@ -41,7 +41,9 @@ namespace DynamicCode.SourceGenerator
             _config = ConfigParser.GetConfig(_visitor, context);
 
             if (_config?.Builders == null)
-                return;
+            {
+                Logger.LogError("Skipping generation", "No template config found.", null);
+            }
 
             _generationEngine.NewGeneration();
 
@@ -58,8 +60,7 @@ namespace DynamicCode.SourceGenerator
                     continue;
                 }
 
-
-                foreach (INamedItem @object in _renderEngine.GetMatchedObjects(_visitor, context, builder))
+                foreach (INamedItem @object in _renderEngine.GetMatchedObjects(context, _visitor, builder))
                 {
                     var renderResult = _renderEngine.RenderMatch(@object, builder);
 
