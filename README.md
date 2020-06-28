@@ -23,10 +23,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Basic Code Finding ✔
 - - Turn off adding source to compilation ✔
 - - Advanced Code Searching (attributes?) 
-- - Http Template Loading
-- - File Directory Template Loading
-- - Pre Built Templates
-- - Better template error handling
+- - File Directory Template Loading ✔
 - - Header File
 - Config File Output
 - - Output Name Template ✔
@@ -44,11 +41,11 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
 - - Language Helper Functions/Names
 - - - Typescript ✔
-- - - Case functions (in progress)
-- - - SQL?
+- - - Case functions ✔ (kebab-case, PascalCase, camelCase)
+- - - SQL
 - Examples
-- - Typescript Models
-- - Typescript Services
+- - Typescript Models ✔
+- - Typescript Services ✔
 - - Markup Documentation ✔
 
 ## Additional Links
