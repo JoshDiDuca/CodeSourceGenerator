@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace DynamicCode.SourceGenerator.Metadata.Roslyn
 {
-    public static class Extensions
+    public static class SymbolExtensions
     {
         public static string GetName(this ISymbol symbol)
         {
