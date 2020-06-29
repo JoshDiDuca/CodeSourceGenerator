@@ -19,13 +19,13 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 ## To Do
 
 - Scriban integration ✔
-- Config File Input
+- Config File - Builder Input
 - - Basic Code Finding ✔
 - - Turn off adding source to compilation ✔
 - - Advanced Code Searching (attributes? & dynamic linq?) 
 - - File Directory Template Loading ✔
 - - Header File
-- Config File Output
+- Config File - Builder Output
 - - Output Name Template ✔
 - - Multiple Output Templates ✔
 - Debugging
@@ -41,12 +41,14 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
 - - Language Helper Functions/Names
 - - - Typescript ✔
-- - - Case functions ✔ (kebab-case, PascalCase, camelCase)
+- - - Case functions ✔
 - - - SQL
 - Examples
 - - Typescript Models ✔
 - - Typescript Services ✔
-- - Markup Documentation ✔
+- - Markup Documentation - Compilation Objects ✔
+- - Markup Documentation - Compilation Functions
+- - Markup Documentation - Config File
 
 ## Additional Links
 
