@@ -1,4 +1,6 @@
-﻿using DynamicCode.SourceGenerator.Common;
+﻿using DynamicCode.SourceGenerator.Commmon.Helpers;
+using DynamicCode.SourceGenerator.Common;
+using DynamicCode.SourceGenerator.Common.Logging;
 using DynamicCode.SourceGenerator.Models.Generations;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -12,6 +14,13 @@ namespace DynamicCode.SourceGenerator.Engines
 {
     public class GenerationEngine
     {
+        private Logger _logger;
+
+        public GenerationEngine(Logger logger)
+        {
+            _logger = logger;
+        }
+
         public int CurrentGeneration { get; protected set; } = 0;
 
         private readonly Dictionary<string, List<GenerationModel<RenderResultModel>>> _generations = new Dictionary<string, List<GenerationModel<RenderResultModel>>>();
@@ -47,14 +56,12 @@ namespace DynamicCode.SourceGenerator.Engines
             CurrentGeneration++;
         }
 
+
         public void PublishGeneration(SourceGeneratorContext context)
         {
             foreach (KeyValuePair<string, RenderResultModel> pair in PreviousGenerations)
             {
-                if (File.Exists(pair.Key))
-                {
-                    File.Delete(pair.Key);
-                }
+                FileHelper.DeleteFile(pair.Key);
             }
 
             foreach (KeyValuePair<string, RenderResultModel> pair in CurrentGenerations)
@@ -69,20 +76,12 @@ namespace DynamicCode.SourceGenerator.Engines
                             context.AddSource(Path.GetFileName(pair.Key), source);
                         }
 
-                        if (!Directory.Exists(Path.GetDirectoryName(pair.Key)))
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(pair.Key));
-                        }
-                        if (File.Exists(pair.Key))
-                        {
-                            File.Delete(pair.Key);
-                        }
-                        File.WriteAllText(pair.Key, source.ToString());
+                        FileHelper.WriteFile(pair.Key, source.ToString());
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
+                    _logger.LogError("Error rendering templates", $"Could not render template output {pair.Key}", ex);
                 }
             }
         }

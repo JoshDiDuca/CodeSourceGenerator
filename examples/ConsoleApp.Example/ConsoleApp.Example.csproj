@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CodeGen\Logs\" />
     <Folder Include="Output\Documentation\" />
     <Folder Include="Output\Debug\" />
     <Folder Include="Output\Typescript\" />

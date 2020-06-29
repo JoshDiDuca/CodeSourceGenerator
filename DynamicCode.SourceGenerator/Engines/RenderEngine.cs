@@ -1,4 +1,5 @@
 ﻿using DynamicCode.SourceGenerator.Common;
+using DynamicCode.SourceGenerator.Common.Logging;
 using DynamicCode.SourceGenerator.Functions;
 using DynamicCode.SourceGenerator.Helpers;
 using DynamicCode.SourceGenerator.Metadata.Interfaces;
@@ -20,6 +21,12 @@ namespace DynamicCode.SourceGenerator.Engines
 {
     public class RenderEngine
     {
+        private Logger _logger;
+        public RenderEngine(Logger logger)
+        {
+            _logger = logger;
+        }
+
         public List<INamedItem> GetMatchedObjects(SourceGeneratorContext context, SourceFileSymbolVisitor visitor, CodeGenerationConfigBuilder builder)
         {
             visitor.Visit(context.Compilation.GlobalNamespace);
@@ -99,7 +106,7 @@ namespace DynamicCode.SourceGenerator.Engines
             } 
             else
             {
-                Logger.LogError("Error finding template", "Could not find the following template: "+ builder.Input.Template);
+                _logger.LogError("Error finding template", "Could not find the following template: "+ builder.Input.Template);
                 return null;
             }
         }

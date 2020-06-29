@@ -1,5 +1,9 @@
 ﻿{
+    "Debugging": {
+        "LogOutput": "CodeGen/Logs/"
+    },
     "Settings": {
+
     },
     "Builders": [
         {

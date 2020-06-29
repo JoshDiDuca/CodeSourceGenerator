@@ -16,6 +16,8 @@ using Scriban.Runtime;
 using DynamicCode.SourceGenerator.Functions;
 using DynamicCode.SourceGenerator.Common;
 using DynamicCode.SourceGenerator.Engines;
+using DynamicCode.SourceGenerator.Common.Logging;
+using DynamicCode.SourceGenerator.Common.Logging.Factories;
 
 namespace DynamicCode.SourceGenerator
 {
@@ -24,6 +26,7 @@ namespace DynamicCode.SourceGenerator
     {
         private CodeGenerationConfig _config;
         private SourceFileSymbolVisitor _visitor;
+        private Logger _logger;
         
         private RenderEngine _renderEngine;
         private GenerationEngine _generationEngine;
@@ -31,8 +34,13 @@ namespace DynamicCode.SourceGenerator
         public void Initialize(InitializationContext context)
         {
             Debugger.Launch();
-            _renderEngine = new RenderEngine();
-            _generationEngine = new GenerationEngine();
+
+            _logger = new Logger();
+            _logger.RegisterFactory(new ConsoleLogOutputFactory("General Logging", LogScope.Error | LogScope.Warning | LogScope.Information));
+
+            _renderEngine = new RenderEngine(_logger);
+            _generationEngine = new GenerationEngine(_logger);
+
             _visitor = new SourceFileSymbolVisitor();
         }
 
@@ -40,9 +48,19 @@ namespace DynamicCode.SourceGenerator
         {
             _config = ConfigParser.GetConfig(_visitor, context);
 
+            if (!string.IsNullOrEmpty(_config.Debugging?.LogOutput))
+            {
+                _logger.RegisterFactory(
+                    new FileLogOutputFactory("Log Output", 
+                    _config.Debugging.LogOutput, 
+                    LogScope.Error | LogScope.Warning | LogScope.Information, 
+                    DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"))
+                );
+            }
+
             if (_config?.Builders == null)
             {
-                Logger.LogError("Skipping generation", "No template config found.", null);
+                _logger.LogError("Skipping generation", "No template config found.", null);
             }
 
             _generationEngine.NewGeneration();
@@ -56,7 +74,7 @@ namespace DynamicCode.SourceGenerator
             {
                 if(builder.Input == null || builder.Output == null)
                 {
-                    Logger.LogError("Skipping generation", "Input or ouput object is not provided.", null);
+                    _logger.LogError("Skipping generation", "Input or ouput object is not provided.", null);
                     continue;
                 }
 
@@ -69,8 +87,8 @@ namespace DynamicCode.SourceGenerator
                         _generationEngine.AddToCurrentGeneration(renderResult);
                     } 
                     else
-                    { 
-                        Logger.LogError("Skipping generation", "File failed to render.", null);
+                    {
+                        _logger.LogError("Skipping generation", "File failed to render.", null);
                         continue;
                     }
                 }
