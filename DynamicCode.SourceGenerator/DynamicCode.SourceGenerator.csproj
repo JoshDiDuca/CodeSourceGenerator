@@ -11,6 +11,14 @@
 
   <PropertyGroup>
     <RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json ;$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>CodeSourceGenerator</PackageId>
+    <Authors>Josh Di-Duca</Authors>
+    <Company />
+    <Product>CodeSourceGenerator</Product>
+    <Description>Generates code from templates using the new roslyn source generator.</Description>
+    <PackageProjectUrl>https://github.com/JoshDiDuca/DynamicCode.SourceGenerator</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
