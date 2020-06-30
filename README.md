@@ -49,6 +49,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Markup Documentation - Compilation Objects ✔
 - - Markup Documentation - Compilation Functions
 - - Markup Documentation - Config File
+- - [Refit](https://github.com/reactiveui/refit) Examples?
 
 ## Additional Links
 
