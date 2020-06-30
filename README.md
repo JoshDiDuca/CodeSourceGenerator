@@ -1,6 +1,6 @@
-# Dynamic Code Source Generator
+# Code Source Generator
 
-Dynamic code source generator is a visual studio analyzer which allows you to generate source files pre compilation with access to objects within the compilation. The aim of this project is so it can be used for generating any type of source file easily from a template, whether it be typescript, html, javascript or even documentation.
+Code source generator is a visual studio analyzer which allows you to generate source files pre compilation with access to objects within the compilation. The aim of this project is so it can be used for generating any type of source file easily from a template, whether it be typescript, html, javascript or even documentation.
 
 *This project is built using .NET 5 preview and since source generators are currently still a preview feature. You will need the latest version of preview .NET 5, the latest preview of Visual Studio with the 'C# and Visual Basic Roslyn compilers' individual component installed in order to run this solution.*
 
@@ -13,43 +13,9 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - Documentation examples
 - Typescript examples
 
-## [Examples](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples)
-## [Compilation Objects](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/OBJECTS.md)
-
-## To Do
-
-- Scriban integration ✔
-- Config File - Builder Input
-- - Basic Code Finding ✔
-- - Turn off adding source to compilation ✔
-- - Advanced Code Searching (attributes? & dynamic linq?) 
-- - File Directory Template Loading ✔
-- - Header File
-- Config File - Builder Output
-- - Output Name Template ✔
-- - Multiple Output Templates ✔
-- Debugging
-- - Better console output
-- - Logging object structure setting
-- - Logging file output
-- File Generation
-- - Basic File ✔
-- - Multiple templates in file ✔
-- - Deleting files
-- - File Watching (Waiting on preview release)
-- Template Integration
-- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/OBJECTS.md))
-- - Language Helper Functions/Names
-- - - Typescript ✔
-- - - Case functions ✔
-- - - SQL
-- Examples
-- - Typescript Models ✔
-- - Typescript Services ✔
-- - Markup Documentation - Compilation Objects ✔
-- - Markup Documentation - Compilation Functions
-- - Markup Documentation - Config File
-- - [Refit](https://github.com/reactiveui/refit) Examples?
+## [Examples](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples)
+## [Compilation Objects](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/OBJECTS.md)
+## [To Do](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/TODO.md)
 
 ## Additional Links
 
