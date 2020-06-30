@@ -14,7 +14,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - Typescript examples
 
 ## [Examples](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples)
-## [Compilation Objects](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md)
+## [Compilation Objects](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/OBJECTS.md)
 
 ## To Do
 
@@ -38,7 +38,7 @@ Dynamic code source generator is a visual studio analyzer which allows you to ge
 - - Deleting files
 - - File Watching (Waiting on preview release)
 - Template Integration
-- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/Objects.md))
+- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/OBJECTS.md))
 - - Language Helper Functions/Names
 - - - Typescript ✔
 - - - Case functions ✔
