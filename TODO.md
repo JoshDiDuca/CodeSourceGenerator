@@ -1,0 +1,34 @@
+## To Do
+
+- Scriban integration ✔
+- Config File - Builder Input
+- - Basic Code Finding ✔
+- - Turn off adding source to compilation ✔
+- - Advanced Code Searching (attributes? & dynamic linq?) 
+- - File Directory Template Loading ✔
+- - Header File
+- Config File - Builder Output
+- - Output Name Template ✔
+- - Multiple Output Templates ✔
+- Debugging
+- - Better console output
+- - Logging object structure setting
+- - Logging file output
+- File Generation
+- - Basic File ✔
+- - Multiple templates in file ✔
+- - Deleting files
+- - File Watching (Waiting on preview release)
+- Template Integration
+- - Source Objects Integration ✔ ([See more](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/OBJECTS.md))
+- - Language Helper Functions/Names
+- - - Typescript ✔
+- - - Case functions ✔
+- - - SQL
+- Examples
+- - Typescript Models ✔
+- - Typescript Services ✔
+- - Markup Documentation - Compilation Objects ✔
+- - Markup Documentation - Compilation Functions
+- - Markup Documentation - Config File
+- - [Refit](https://github.com/reactiveui/refit) Examples?

@@ -6,17 +6,17 @@ This folder contains examples of the framework in use. Since the library is stil
 
 # Web UI Example
 
-The web UI example currently has the following configuration [file](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/examples/WebUI.Example/codegen.json):
+The web UI example currently has the following configuration [file](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/WebUI.Example/codegen.json):
 
 ## Services Generation
 
 This source generation example generates typescript services for the web ui's controller.
 
-[Input](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Controllers)
+[Input](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples/WebUI.Example/Controllers)
 
-[Template](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/examples/WebUI.Example/Typescript/Templates/typescriptService.scriban)
+[Template](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/WebUI.Example/Typescript/Templates/typescriptService.scriban)
 
-[Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Services)
+[Output](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Services)
 
 Config:
 ```json
@@ -36,11 +36,11 @@ Config:
 
 This source generation example generates typescript models for the web ui.
 
-[Input](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Models)
+[Input](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples/WebUI.Example/Models)
 
-[Template](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/examples/WebUI.Example/Typescript/Templates/typescriptModel.scriban)
+[Template](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/WebUI.Example/Typescript/Templates/typescriptModel.scriban)
 
-[Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Models)
+[Output](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples/WebUI.Example/Typescript/Generated/Models)
 
 Config:
 ```json
@@ -57,17 +57,17 @@ Config:
 
 # Console Example
 
-The console example currently has the following configuration [file](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/examples/ConsoleApp.Example/codegen.json):
+The console example currently has the following configuration [file](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/ConsoleApp.Example/codegen.json):
 
 ## Documentation Generation
 
 This source generation example generates the documentation for this library.
 
-[Input](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/DynamicCode.SourceGenerator.Models/RenderModels)
+[Input](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/DynamicCode.SourceGenerator.Models/RenderModels)
 
-[Template](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/blob/master/examples/ConsoleApp.Example/CodeGen/documentationModel.scriban)
+[Template](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/ConsoleApp.Example/CodeGen/documentationModel.scriban)
 
-[Output](https://github.com/JoshDiDuca/DynamicCode.SourceGenerator/tree/master/examples/ConsoleApp.Example/Output/Documentation)
+[Output](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/examples/ConsoleApp.Example/Output/Documentation)
 
 Config:
 ```json
