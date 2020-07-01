@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
@@ -28,12 +29,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Config\DynamicCode.SourceGenerator.Config.csproj" />
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj" />
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj" />
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Common\DynamicCode.SourceGenerator.Common.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Config\DynamicCode.SourceGenerator.Config.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata.Roslyn\DynamicCode.SourceGenerator.Metadata.Roslyn.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Metadata\DynamicCode.SourceGenerator.Metadata.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Models.CodeGeneration\DynamicCode.SourceGenerator.Models.CodeGeneration.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

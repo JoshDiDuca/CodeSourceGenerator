@@ -16,6 +16,7 @@ namespace DynamicCode.SourceGenerator.Common.Logging
     {
         Information = 0,
         Warning = 1,
-        Error = 2
+        Error = 2,
+        Objects = 3
     };
 }

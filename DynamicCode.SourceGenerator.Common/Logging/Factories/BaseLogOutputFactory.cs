@@ -9,17 +9,19 @@ namespace DynamicCode.SourceGenerator.Common.Logging.Factories
     public class BaseLogOutputFactory : ILogOuputFactory
     {
         public string Key { get; protected set; }
-        public LogScope IncludedScope { get; protected set; }
+        public LogScope? IncludedScope { get; protected set; }
+        public LogScope? ExcludeScope { get; protected set; }
         public string AdditionalKey { get; protected set; }
 
-        public BaseLogOutputFactory(string key, LogScope includedScope, string additionalKey = null)
+        public BaseLogOutputFactory(string key, LogScope? includedScope, LogScope? excludeScope = null, string additionalKey = null)
         {
             Key = key;
             IncludedScope = includedScope;
+            ExcludeScope = excludeScope;
             AdditionalKey = additionalKey;
         }
 
-        public virtual bool IsInScope(LogModel model) => true;
+        public virtual bool IsInScope(LogModel model) => IncludedScope?.HasFlag(model.Scopes) == true && (ExcludeScope != null && ExcludeScope.Value.HasFlag(model.Scopes));
 
         public virtual bool Log(LogModel model)
         {

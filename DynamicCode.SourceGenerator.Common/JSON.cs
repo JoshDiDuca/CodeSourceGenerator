@@ -1,11 +1,31 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace DynamicCode.SourceGenerator.Common
 {
     public static class JSON
     {
+        public static string Convert<T>(T model)
+        {
+            try
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    serializer.WriteObject(ms, model);
+                    return Encoding.Default.GetString(ms.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error reading json:");
+                Console.WriteLine(ex);
+            }
+            return default;
+        }
         public static T Parse<T>(string content)
         {
             try
@@ -16,7 +36,7 @@ namespace DynamicCode.SourceGenerator.Common
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error finding file:");
+                Console.WriteLine("Error writing json:");
                 Console.WriteLine(ex);
             }
             return default;

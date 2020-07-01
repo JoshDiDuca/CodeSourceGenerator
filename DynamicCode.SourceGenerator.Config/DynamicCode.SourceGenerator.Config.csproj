@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamicCode.SourceGenerator.Common\DynamicCode.SourceGenerator.Common.csproj" />
+    <ProjectReference Include="..\DynamicCode.SourceGenerator.Common\DynamicCode.SourceGenerator.Common.csproj"  />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Models\DynamicCode.SourceGenerator.Models.csproj" />
     <ProjectReference Include="..\DynamicCode.SourceGenerator.Visitors\DynamicCode.SourceGenerator.Visitors.csproj" />
   </ItemGroup>

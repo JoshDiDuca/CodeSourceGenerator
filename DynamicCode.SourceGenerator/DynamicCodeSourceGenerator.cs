@@ -54,6 +54,17 @@ namespace DynamicCode.SourceGenerator
                     new FileLogOutputFactory("Log Output", 
                     _config.Debugging.LogOutput, 
                     LogScope.Error | LogScope.Warning | LogScope.Information, 
+                    LogScope.Objects, 
+                    DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"))
+                );
+            }
+            if (string.IsNullOrEmpty(_config.Debugging?.ObjectOutput))
+            {
+                _logger.RegisterFactory(
+                    new FileLogOutputFactory("Object Output",
+                    _config.Debugging?.ObjectOutput,
+                    LogScope.Error | LogScope.Warning | LogScope.Information,
+                    LogScope.Objects,
                     DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"))
                 );
             }

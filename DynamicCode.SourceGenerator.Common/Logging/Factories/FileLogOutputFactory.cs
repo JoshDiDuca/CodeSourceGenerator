@@ -12,7 +12,7 @@ namespace DynamicCode.SourceGenerator.Common.Logging.Factories
     {
         public string FilePath { get; set; }
 
-        public FileLogOutputFactory(string key, string filePath, LogScope includedInScope, string additionalKey = null) : base(key, includedInScope, additionalKey)
+        public FileLogOutputFactory(string key, string filePath, LogScope? includedInScope, LogScope? excludeScope, string additionalKey = null) : base(key, includedInScope, excludeScope, additionalKey)
         {
             FilePath = filePath;
         }
@@ -32,9 +32,9 @@ namespace DynamicCode.SourceGenerator.Common.Logging.Factories
                     additionalKey = AdditionalKey;
                 else additionalKey = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
-                string fileName = Key.ToLower() + additionalKey + ".txt";
+                string fileName = $"{Key}_{additionalKey}.txt";
 
-                string validFilename = new string(fileName.Where(ch => !invalidFileNameChars.Contains(ch)).ToArray()).Replace(" ", "_");
+                string validFilename = new string(fileName.Where(ch => !invalidFileNameChars.Contains(ch)).ToArray()).Replace(" ", "_").ToLower();
                 string filePath = Path.Combine(FilePath, validFilename);
 
                 FileHelper.WriteFile(filePath, $"{GetScopeString(model.Scopes) ?? "Log"}: {model.Title} - {model.Message}", true);

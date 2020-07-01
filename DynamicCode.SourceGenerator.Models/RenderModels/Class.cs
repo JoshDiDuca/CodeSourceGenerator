@@ -1,9 +1,11 @@
 ﻿
 using DynamicCode.SourceGenerator.Models.RenderModels;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DynamicCode.SourceGenerator.Models.RenderModels
 {
+    [DataContract]
     public abstract class Class : Object
     {
         /// <summary>

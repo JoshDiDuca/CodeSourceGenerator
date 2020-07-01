@@ -75,13 +75,23 @@ namespace DynamicCode.SourceGenerator.Engines
 
         public RenderResultModel RenderMatch(INamedItem @object, CodeGenerationConfigBuilder builder)
         {
-            ScriptObject scriptObject = new ScriptObject();
-            scriptObject.Import(typeof(StringFunctions));
 
             Models.RenderModels.Object renderModel = RenderModel.FromNamedItem(builder, @object);
-            scriptObject.Import(renderModel);
+
+            var serialRenderModel = JSON.Convert(renderModel);
+            _logger.LogError(new LogModel
+            {
+                Message = serialRenderModel,
+                Title = renderModel?.ToString(),
+                AdditionalKey = $"{renderModel?.ToString()}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}",
+                Scopes = LogScope.Objects
+            });
+
 
             TemplateContext templateContext = new TemplateContext();
+            ScriptObject scriptObject = new ScriptObject();
+            scriptObject.Import(typeof(StringFunctions));
+            scriptObject.Import(renderModel);
             templateContext.PushGlobal(scriptObject);
 
             string templateContent = TemplateHelper.FindTemplateFile(builder.Input.Template);
@@ -98,7 +108,7 @@ namespace DynamicCode.SourceGenerator.Engines
 
                 string result = template.Render(templateContext);
 
-                List<string> outputFilePaths = new List<string>(fileNameTemplates.Select(r => r.Render(renderModel)));
+                List<string> outputFilePaths = new List<string>(fileNameTemplates.Select(r => r.Render(templateContext)));
 
                 RenderResultModel renderResult = new RenderResultModel { Result = result, BuilderConfig = builder, OutputPaths = outputFilePaths };
 

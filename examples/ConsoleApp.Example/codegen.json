@@ -1,6 +1,6 @@
 ﻿{
     "Debugging": {
-        "LogOutput": "CodeGen/Logs/"
+        "LogOutput": ""
     },
     "Settings": {
 
