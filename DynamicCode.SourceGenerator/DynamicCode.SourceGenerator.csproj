@@ -17,7 +17,7 @@
     <Company />
     <Product>CodeSourceGenerator</Product>
     <Description>Generates code from templates using the new roslyn source generator.</Description>
-    <PackageProjectUrl>https://github.com/JoshDiDuca/DynamicCode.SourceGenerator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/JoshDiDuca/CodeSourceGenerator</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
