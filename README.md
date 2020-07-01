@@ -13,8 +13,8 @@ Code source generator is a visual studio analyzer which allows you to generate s
 - Documentation examples
 - Typescript examples
 
-## [Examples](https://github.com/JoshDiDuca/CodeSourceGeneratorster/examples)
-## [Compilation Objects](https://github.com/JoshDiDuca/CodeSourceGeneratorster/OBJECTS.md)
+## [Examples](https://github.com/JoshDiDuca/CodeSourceGenerator/master/examples)
+## [Compilation Objects](https://github.com/JoshDiDuca/CodeSourceGenerator/master/OBJECTS.md)
 ## [To Do](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/TODO.md)
 
 ## Additional Links
