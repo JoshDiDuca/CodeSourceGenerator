@@ -31,7 +31,7 @@ namespace DynamicCode.SourceGenerator.Common.Logging.Factories
         protected string GetScopeString(LogScope scope)
         {
             StringBuilder builder = new StringBuilder();
-            var scopeStrings = Enum.GetValues(typeof(LogScope)).Cast<LogScope>()?.Where(s => scope.HasFlag(s))?.Select(s => s.ToString());
+            var scopeStrings = Enum.GetValues(typeof(LogScope)).Cast<LogScope>()?.Where(s => s == scope);
             if (scopeStrings != null)
                 return string.Join(", ", scopeStrings);
             else return null;
