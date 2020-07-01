@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CodeSourceGenerator": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

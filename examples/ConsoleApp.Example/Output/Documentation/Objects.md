@@ -5,112 +5,6 @@ Properties
 - Name (string)
 - Parent (Object)
 
-# Object
-
-Properties
-
-- Template (string)
-
-# Method
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- IsAbstract (bool)
-- IsGeneric (bool)
-- IsPublic (bool)
-- IsPrivate (bool)
-- IsProtected (bool)
-- Name (string)
-- Parameters (ParameterCollection)
-- Parent (Object)
-- Type (Type)
-- TypeParameters (IEnumerable)
-
-# Event
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Type (Type)
-
-# ParameterComment
-
-Properties
-
-- Name (string)
-- Description (string)
-- Parent (Object)
-
-# DocComment
-
-Properties
-
-- Summary (string)
-- Returns (string)
-- Parameters (ParameterCommentCollection)
-- Parent (Object)
-
-# Delegate
-
-Properties
-
-- Attributes (IEnumerable)
-- DocComment (DocComment)
-- FullName (string)
-- IsGeneric (bool)
-- Name (string)
-- Parameters (ParameterCollection)
-- Parent (Object)
-- Type (Type)
-- TypeParameters (IEnumerable)
-
-# Class
-
-Properties
-
-- Attributes (IEnumerable)
-- BaseClass (Class)
-- Constants (IEnumerable)
-- ContainingClass (Class)
-- Delegates (IEnumerable)
-- DocComment (DocComment)
-- Events (IEnumerable)
-- Fields (IEnumerable)
-- FullName (string)
-- Interfaces (IEnumerable)
-- IsAbstract (bool)
-- IsGeneric (bool)
-- IsPublic (bool)
-- IsPrivate (bool)
-- IsProtected (bool)
-- Methods (IEnumerable)
-- Name (string)
-- Namespace (string)
-- NestedClasses (IEnumerable)
-- NestedEnums (IEnumerable)
-- NestedInterfaces (IEnumerable)
-- Parent (Object)
-- Properties (IEnumerable)
-- TypeArguments (IEnumerable)
-- TypeParameters (IEnumerable)
-- Type (Type)
-
-# Attribute
-
-Properties
-
-- FullName (string)
-- Name (string)
-- Parent (Object)
-- Value (string)
-
 # Type
 
 Properties
@@ -180,6 +74,30 @@ Properties
 - Parent (Object)
 - Type (Type)
 
+# Object
+
+Properties
+
+- Template (string)
+
+# Method
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsAbstract (bool)
+- IsGeneric (bool)
+- IsPublic (bool)
+- IsPrivate (bool)
+- IsProtected (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
+
 # Interface
 
 Properties
@@ -228,6 +146,17 @@ Properties
 - IsPrivate (bool)
 - IsProtected (bool)
 
+# Event
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- Name (string)
+- Parent (Object)
+- Type (Type)
+
 # EnumValue
 
 Properties
@@ -257,6 +186,37 @@ Properties
 - Values (EnumValueCollection)
 - Type (Type)
 
+# ParameterComment
+
+Properties
+
+- Name (string)
+- Description (string)
+- Parent (Object)
+
+# DocComment
+
+Properties
+
+- Summary (string)
+- Returns (string)
+- Parameters (ParameterCommentCollection)
+- Parent (Object)
+
+# Delegate
+
+Properties
+
+- Attributes (IEnumerable)
+- DocComment (DocComment)
+- FullName (string)
+- IsGeneric (bool)
+- Name (string)
+- Parameters (ParameterCollection)
+- Parent (Object)
+- Type (Type)
+- TypeParameters (IEnumerable)
+
 # Constant
 
 Properties
@@ -267,4 +227,44 @@ Properties
 - Name (string)
 - Parent (Object)
 - Type (Type)
+- Value (string)
+
+# Class
+
+Properties
+
+- Attributes (IEnumerable)
+- BaseClass (Class)
+- Constants (IEnumerable)
+- ContainingClass (Class)
+- Delegates (IEnumerable)
+- DocComment (DocComment)
+- Events (IEnumerable)
+- Fields (IEnumerable)
+- FullName (string)
+- Interfaces (IEnumerable)
+- IsAbstract (bool)
+- IsGeneric (bool)
+- IsPublic (bool)
+- IsPrivate (bool)
+- IsProtected (bool)
+- Methods (IEnumerable)
+- Name (string)
+- Namespace (string)
+- NestedClasses (IEnumerable)
+- NestedEnums (IEnumerable)
+- NestedInterfaces (IEnumerable)
+- Parent (Object)
+- Properties (IEnumerable)
+- TypeArguments (IEnumerable)
+- TypeParameters (IEnumerable)
+- Type (Type)
+
+# Attribute
+
+Properties
+
+- FullName (string)
+- Name (string)
+- Parent (Object)
 - Value (string)

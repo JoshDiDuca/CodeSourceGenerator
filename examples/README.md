@@ -63,7 +63,7 @@ The console example currently has the following configuration [file](https://git
 
 This source generation example generates the documentation for this library.
 
-[Input](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/DynamicCode.SourceGenerator.Models/RenderModels)
+[Input](https://github.com/JoshDiDuca/CodeSourceGenerator/tree/master/CodeSourceGenerator.Models/RenderModels)
 
 [Template](https://github.com/JoshDiDuca/CodeSourceGenerator/blob/master/examples/ConsoleApp.Example/CodeGen/documentationModel.scriban)
 
@@ -72,9 +72,9 @@ This source generation example generates the documentation for this library.
 Config:
 ```json
 {
-  "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
+  "InputMatchers": [ "CodeSourceGenerator.Models.RenderModels" ],
   "InputIgnoreMatchers": [ "Collection" ],
-  "Assemblies": [ "DynamicCode.SourceGenerator.Models" ],
+  "Assemblies": [ "CodeSourceGenerator.Models" ],
   "OutputName": "Output/Documentation/Objects.txt",
   "Template": "CodeGen/documentationModel.scriban"
 }

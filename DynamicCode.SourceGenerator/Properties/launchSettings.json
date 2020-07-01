@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "DynamicCode.SourceGenerator": {
-      "commandName": "Project",
-      "nativeDebugging": true
-    }
-  }
-}

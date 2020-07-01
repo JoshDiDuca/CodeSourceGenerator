@@ -9,9 +9,9 @@
         {
             "Input": {
                 "Template": "CodeGen/documentationModel.scriban",
-                "InputMatchers": [ "DynamicCode.SourceGenerator.Models.RenderModels" ],
+                "InputMatchers": [ "CodeSourceGenerator.Models.RenderModels" ],
                 "InputIgnoreMatchers": [ "Collection" ],
-                "Assemblies": [ "DynamicCode.SourceGenerator.Models" ]
+                "Assemblies": [ "CodeSourceGenerator.Models" ]
             },
             "Output": {
                 "OutputPathTemplates": [ "Output/Documentation/Objects.md" ],
