@@ -4,6 +4,9 @@ Code source generator is a visual studio analyzer which allows you to generate s
 
 *This project is built using .NET 5 preview and since source generators are currently still a preview feature. You will need the latest version of preview .NET 5, the latest preview of Visual Studio with the 'C# and Visual Basic Roslyn compilers' individual component installed in order to run this solution.*
 
+Please note:
+This project has been put on hold until .NET 5 releases more features but this project does work with .NET 5 preview projects and is still a very eligant solution for code generation within your projects.
+
 ## Features
 
 - Templating using [scriban](https://github.com/lunet-io/scriban/)
